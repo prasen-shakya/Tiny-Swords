@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dcluyi64hexnv"]
 
-[ext_resource type="Script" uid="uid://cf882nsaygiqx" path="res://scripts/player/player.gd" id="1_674bt"]
-[ext_resource type="Script" uid="uid://cp1bttswj4kyr" path="res://scripts/player/player_input.gd" id="2_3mip4"]
+[ext_resource type="Script" uid="uid://cf882nsaygiqx" path="res://entities/player/player.gd" id="1_674bt"]
+[ext_resource type="Script" uid="uid://cp1bttswj4kyr" path="res://entities/player/player_input.gd" id="2_3mip4"]
 [ext_resource type="Script" uid="uid://bbbdey83bbgf8" path="res://scripts/characters/movement_component.gd" id="3_insbl"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fdrta"]
@@ -243,7 +243,7 @@ vframes = 8
 frame = 1
 
 [node name="MovementCollider" type="CollisionShape2D" parent="." unique_id=1326847303]
-position = Vector2(0, -18)
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_674bt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=94841206]

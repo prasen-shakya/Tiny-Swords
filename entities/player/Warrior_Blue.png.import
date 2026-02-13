@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dj4fihfoh0wng"
-path="res://.godot/imported/Warrior_Blue.png-fda4026e26429e6fdb1054f3dc375318.ctex"
+path="res://.godot/imported/Warrior_Blue.png-4ae6ab06753eff83e99700c26273c1f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Knights/Troops/Warrior/Blue/Warrior_Blue.png"
-dest_files=["res://.godot/imported/Warrior_Blue.png-fda4026e26429e6fdb1054f3dc375318.ctex"]
+source_file="res://entities/player/Warrior_Blue.png"
+dest_files=["res://.godot/imported/Warrior_Blue.png-4ae6ab06753eff83e99700c26273c1f0.ctex"]
 
 [params]
 

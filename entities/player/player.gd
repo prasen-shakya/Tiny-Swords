@@ -25,8 +25,11 @@ func _ready():
 func _physics_process(delta):
 	input_component.update_input()
 	
-	# Only attack 
-	if input_component.attack_pressed and player_state != PlayerState.ATTACK and attack_cooldown.is_stopped():
+	if input_component.attack_pressed:
+		# If we're not allowed to attack, don't 
+		if player_state == PlayerState.ATTACK or not attack_cooldown.is_stopped():
+			return
+		
 		enter_attack()
 		return
 
@@ -68,7 +71,6 @@ func state_attack():
 	movement_component.stop()
 
 
-# ---------------- ATTACK CONTROL ----------------
 func enter_attack():
 	player_state = PlayerState.ATTACK
 

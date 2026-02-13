@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="Tiny Swords"
-run/main_scene="uid://tnjljnu00fhs"
+run/main_scene="uid://ciwsjomd7h076"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://bly41a55j3qh3"
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=540
-window/size/mode=1
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=2
 window/stretch/mode="canvas_items"
 
 [input]
