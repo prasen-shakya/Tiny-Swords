@@ -1,26 +1,49 @@
 @tool
 extends Node2D
 
+
+@export var ground: TileMapLayer 
+@export var cliff: TileMapLayer
+@export var shadow: TileMapLayer
+@export var water: TileMapLayer 
+@export var foam: TileMapLayer
+
+# --- TileSet source/atlas coords (adjust to match your atlas) ---
+const GROUND_SOURCE_ID := 0
+const GROUND_ATLAS_COORD := Vector2i(0, 0)
+
 const FOAM_SOURCE_ID := 0
 const FOAM_ATLAS_COORD := Vector2i(0, 0)
 
-@export var regenerate := false:
+@export var generate_shadow := false:
 	set(value):
-		regenerate = false
+		generate_shadow = false
+		if Engine.is_editor_hint():
+			generate_shadows()
+
+@export var generate_water_foam := false:
+	set(value):
+		generate_water_foam = false
 		if Engine.is_editor_hint():
 			generate_foam()
-	
-func generate_foam() -> void:
-	var ground: TileMapLayer = get_node_or_null("Ground")
-	
-	var water: TileMapLayer = get_node_or_null("Water")
-	var foam: TileMapLayer = get_node_or_null("WaterFoam")
 
+func generate_shadows() -> void:
+	if cliff == null or shadow == null:
+		push_warning("Nodes not found (Cliff/Shadow)")
+		return
+	
+	shadow.clear()
+	
+	for cell in cliff.get_used_cells():
+		var cliff_edge_atlas_cords := [Vector2i(5,4),Vector2i(6,4),Vector2i(7,4),Vector2i(8,4)]
+		if cliff.get_cell_atlas_coords(cell) in cliff_edge_atlas_cords:
+			shadow.set_cell(cell, 1, Vector2i(0,0))
+
+func generate_foam() -> void:
 	if ground == null or water == null or foam == null:
-		print("Nodes not found")
+		push_warning("Nodes not found (Ground/Water/WaterFoam).")
 		return
 
-	print("Generating foam...")
 	foam.clear()
 
 	var directions := [
@@ -30,16 +53,11 @@ func generate_foam() -> void:
 		Vector2i.RIGHT
 	]
 
-
 	for cell in ground.get_used_cells():
 		for dir in directions:
 			var neighbor = cell + dir
 
 			# Water exists AND ground does not exist there
-			if water.get_cell_source_id(neighbor) != -1 \
-			and ground.get_cell_source_id(neighbor) == -1:
-				foam.set_cell(
-					cell,
-					FOAM_SOURCE_ID,
-					FOAM_ATLAS_COORD
-				)
+			if water.get_cell_source_id(neighbor) != -1 and ground.get_cell_source_id(neighbor) == -1:
+				foam.set_cell(cell, FOAM_SOURCE_ID, FOAM_ATLAS_COORD)
+				break
