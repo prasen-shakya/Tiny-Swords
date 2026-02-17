@@ -7,6 +7,7 @@ extends Node2D
 @export var shadow: TileMapLayer
 @export var water: TileMapLayer 
 @export var foam: TileMapLayer
+@export var props: TileMapLayer
 
 # --- TileSet source/atlas coords (adjust to match your atlas) ---
 const GROUND_SOURCE_ID := 0
@@ -26,6 +27,12 @@ const FOAM_ATLAS_COORD := Vector2i(0, 0)
 		generate_water_foam = false
 		if Engine.is_editor_hint():
 			generate_foam()
+
+@export var filter_props := false:
+	set(value):
+		filter_props = false
+		if Engine.is_editor_hint():
+			remove_prop_tiles()
 
 func generate_shadows() -> void:
 	if cliff == null or shadow == null:
@@ -61,3 +68,13 @@ func generate_foam() -> void:
 			if water.get_cell_source_id(neighbor) != -1 and ground.get_cell_source_id(neighbor) == -1:
 				foam.set_cell(cell, FOAM_SOURCE_ID, FOAM_ATLAS_COORD)
 				break
+
+func remove_prop_tiles() -> void:
+	for cell in props.get_used_cells():
+		var cliff_edge_atlas_cords := [Vector2i(5,4),Vector2i(6,4),Vector2i(7,4),Vector2i(8,4)]
+		if cliff.get_cell_atlas_coords(cell) in cliff_edge_atlas_cords:
+			props.erase_cell(cell)
+
+
+		if water.get_cell_source_id(cell) != -1 and ground.get_cell_source_id(cell) == -1:
+			props.erase_cell(cell)
