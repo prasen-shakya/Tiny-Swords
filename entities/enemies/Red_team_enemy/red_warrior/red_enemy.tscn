@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://dcluyi64hexnv"]
+[gd_scene format=3 uid="uid://c3yqsfn5fek3g"]
 
-[ext_resource type="Script" uid="uid://cf882nsaygiqx" path="res://entities/player/player.gd" id="1_674bt"]
-[ext_resource type="Script" uid="uid://cp1bttswj4kyr" path="res://entities/player/player_input.gd" id="2_3mip4"]
-[ext_resource type="Texture2D" uid="uid://dj4fihfoh0wng" path="res://entities/player/Warrior_Blue.png" id="2_bls4j"]
-[ext_resource type="Script" uid="uid://bbbdey83bbgf8" path="res://scripts/characters/movement_component.gd" id="3_insbl"]
+[ext_resource type="Script" uid="uid://cf882nsaygiqx" path="res://entities/player/player.gd" id="1_mmjwh"]
+[ext_resource type="Texture2D" uid="uid://ctoj6jb747loh" path="res://entities/enemies/Red_team_enemy/red_warrior/Warrior_Red.png" id="2_dt443"]
+[ext_resource type="Script" uid="uid://cp1bttswj4kyr" path="res://entities/player/player_input.gd" id="3_bs6md"]
+[ext_resource type="Script" uid="uid://bbbdey83bbgf8" path="res://scripts/characters/movement_component.gd" id="4_e52v0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_674bt"]
 radius = 18.027756
@@ -228,14 +228,14 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-214.45718, 64.142365)
 
 [node name="Player" type="CharacterBody2D" unique_id=762456616 node_paths=PackedStringArray("input_component", "movement_component")]
-script = ExtResource("1_674bt")
+script = ExtResource("1_mmjwh")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1715619646]
 texture_filter = 1
 position = Vector2(0, -33)
-texture = ExtResource("2_bls4j")
+texture = ExtResource("2_dt443")
 hframes = 6
 vframes = 8
 frame = 1
@@ -255,11 +255,11 @@ parameters/attack/BlendSpace2D/blend_position = Vector2(0.0034207106, 1.009434)
 parameters/attack/TimeScale/scale = 1.0
 
 [node name="InputComponent" type="Node" parent="." unique_id=1896382726]
-script = ExtResource("2_3mip4")
+script = ExtResource("3_bs6md")
 metadata/_custom_type_script = "uid://cp1bttswj4kyr"
 
 [node name="MovementComponent" type="Node" parent="." unique_id=1384660000 node_paths=PackedStringArray("body")]
-script = ExtResource("3_insbl")
+script = ExtResource("4_e52v0")
 body = NodePath("..")
 metadata/_custom_type_script = "uid://bbbdey83bbgf8"
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3tgwao341n5q"
-path="res://.godot/imported/Warrior_Yellow.png-1bb17ce560d8ebcae38ad8e70057a60a.ctex"
+uid="uid://c3juobjg2pq51"
+path="res://.godot/imported/Archer_Yellow.png-83cf14074668f8334efa413bed0e480f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Knights/Troops/Warrior/Yellow/Warrior_Yellow.png"
-dest_files=["res://.godot/imported/Warrior_Yellow.png-1bb17ce560d8ebcae38ad8e70057a60a.ctex"]
+source_file="res://entities/enemies/Yellow_team_enemy/yellow_archer/Archer_Yellow.png"
+dest_files=["res://.godot/imported/Archer_Yellow.png-83cf14074668f8334efa413bed0e480f.ctex"]
 
 [params]
 

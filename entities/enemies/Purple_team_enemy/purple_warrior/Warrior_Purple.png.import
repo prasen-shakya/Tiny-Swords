@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rwav8s2wpi7r"
-path="res://.godot/imported/Warrior_Purple.png-78245b6a5e00d8172c5b197416c3ba45.ctex"
+path="res://.godot/imported/Warrior_Purple.png-b4d48aaa4882d53458fc41a1ce72dbdb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Knights/Troops/Warrior/Purple/Warrior_Purple.png"
-dest_files=["res://.godot/imported/Warrior_Purple.png-78245b6a5e00d8172c5b197416c3ba45.ctex"]
+source_file="res://entities/enemies/Purple_team_enemy/purple_warrior/Warrior_Purple.png"
+dest_files=["res://.godot/imported/Warrior_Purple.png-b4d48aaa4882d53458fc41a1ce72dbdb.ctex"]
 
 [params]
 
