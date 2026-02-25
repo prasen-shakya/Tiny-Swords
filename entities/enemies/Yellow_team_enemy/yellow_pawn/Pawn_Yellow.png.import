@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkdft0v033gty"
-path="res://.godot/imported/Archer_Purlple.png-24b3caee69eb96ebe3f74ff1fcfaa10e.ctex"
+uid="uid://doc0cdm5vin58"
+path="res://.godot/imported/Pawn_Yellow.png-e9fd735a490718eb39a011ae44046a75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Knights/Troops/Archer/Purple/Archer_Purlple.png"
-dest_files=["res://.godot/imported/Archer_Purlple.png-24b3caee69eb96ebe3f74ff1fcfaa10e.ctex"]
+source_file="res://entities/enemies/Yellow_team_enemy/yellow_pawn/Pawn_Yellow.png"
+dest_files=["res://.godot/imported/Pawn_Yellow.png-e9fd735a490718eb39a011ae44046a75.ctex"]
 
 [params]
 

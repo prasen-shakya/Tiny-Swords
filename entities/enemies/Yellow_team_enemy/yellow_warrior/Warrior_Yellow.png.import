@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doc0cdm5vin58"
-path="res://.godot/imported/Pawn_Yellow.png-55a0dc319d41c9b64c0f937a3f267f04.ctex"
+uid="uid://d3tgwao341n5q"
+path="res://.godot/imported/Warrior_Yellow.png-d5e73eeab62531f290cbfca8104d73e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Knights/Troops/Pawn/Yellow/Pawn_Yellow.png"
-dest_files=["res://.godot/imported/Pawn_Yellow.png-55a0dc319d41c9b64c0f937a3f267f04.ctex"]
+source_file="res://entities/enemies/Yellow_team_enemy/yellow_warrior/Warrior_Yellow.png"
+dest_files=["res://.godot/imported/Warrior_Yellow.png-d5e73eeab62531f290cbfca8104d73e8.ctex"]
 
 [params]
 
