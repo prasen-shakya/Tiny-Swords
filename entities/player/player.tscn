@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cf882nsaygiqx" path="res://entities/player/player.gd" id="1_674bt"]
 [ext_resource type="Script" uid="uid://cp1bttswj4kyr" path="res://entities/player/player_input.gd" id="2_3mip4"]
+[ext_resource type="Texture2D" uid="uid://dj4fihfoh0wng" path="res://entities/player/Warrior_Blue.png" id="2_bls4j"]
 [ext_resource type="Script" uid="uid://bbbdey83bbgf8" path="res://scripts/characters/movement_component.gd" id="3_insbl"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fdrta"]
-load_path = "res://.godot/imported/Warrior_Blue.png-fda4026e26429e6fdb1054f3dc375318.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_674bt"]
 radius = 18.027756
@@ -237,7 +235,7 @@ movement_component = NodePath("MovementComponent")
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1715619646]
 texture_filter = 1
 position = Vector2(0, -33)
-texture = SubResource("CompressedTexture2D_fdrta")
+texture = ExtResource("2_bls4j")
 hframes = 6
 vframes = 8
 frame = 1
