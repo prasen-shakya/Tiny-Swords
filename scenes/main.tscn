@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bg7r07sxulrw5" path="res://art/tiny_swords_old/Deco/08.png" id="22_5poiv"]
 [ext_resource type="Texture2D" uid="uid://cqdpaofnknj8v" path="res://art/tiny_swords_old/Deco/09.png" id="23_2cjbq"]
 [ext_resource type="Texture2D" uid="uid://cqho27de4shsd" path="res://art/tiny_swords_old/Deco/10.png" id="24_chjal"]
+[ext_resource type="PackedScene" uid="uid://hchyogtqwdx6" path="res://ui/game_ui.tscn" id="24_y6deb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jscy8"]
 texture = ExtResource("2_85g3d")
@@ -586,3 +587,5 @@ metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Decorations/Player" unique_id=918439919]
 zoom = Vector2(1.5, 1.5)
+
+[node name="GameUI" parent="." unique_id=1022784059 instance=ExtResource("24_y6deb")]

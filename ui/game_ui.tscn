@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://hchyogtqwdx6"]
+
+[ext_resource type="Texture2D" uid="uid://wpvobhd7e4r7" path="res://art/tiny_swords_new/UI Elements/UI Elements/Human Avatars/Avatars_01.png" id="1_dcmab"]
+[ext_resource type="Texture2D" uid="uid://k6ufi04xakl1" path="res://art/tiny_swords_old/UI/Buttons/Button_Disable_3Slides.png" id="2_w46tp"]
+[ext_resource type="Texture2D" uid="uid://diu6ph7pok3qc" path="res://art/tiny_swords_old/UI/Buttons/Button_Disable_3Outline.png" id="3_pylni"]
+[ext_resource type="Texture2D" uid="uid://bhy83knkc2cik" path="res://art/tiny_swords_new/UI Elements/UI Elements/Bars/BigBar_Fill.png" id="4_3vkek"]
+
+[node name="GameUI" type="CanvasLayer" unique_id=1022784059]
+
+[node name="PlayerHealth" type="Control" parent="." unique_id=1931417216]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 500.0
+offset_bottom = 138.0
+metadata/_edit_group_ = true
+
+[node name="PlayerImage" type="TextureRect" parent="PlayerHealth" unique_id=985474531]
+layout_mode = 0
+offset_right = 156.0
+offset_bottom = 156.0
+texture = ExtResource("1_dcmab")
+expand_mode = 1
+
+[node name="HealthBar" type="TextureProgressBar" parent="PlayerHealth" unique_id=1435722701]
+texture_filter = 1
+layout_mode = 0
+offset_left = 141.0
+offset_top = 59.0
+offset_right = 473.0
+offset_bottom = 106.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 24
+stretch_margin_right = 24
+texture_under = ExtResource("2_w46tp")
+texture_over = ExtResource("3_pylni")
+texture_progress = ExtResource("4_3vkek")
