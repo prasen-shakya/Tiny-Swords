@@ -16,11 +16,23 @@ enum PlayerState {
 @onready var player_sprite: Sprite2D = $PlayerSprite
 @onready var attack_cooldown: Timer = $AttackCooldown
 
+@export var game_ui: CanvasLayer
+@onready var health_bar_ui: TextureProgressBar = game_ui.get_node("PlayerHealth/HealthBar")
+
+
+# Player Stats
+var max_player_health := 100
+var player_health := 100
+
+signal died
+
 var player_state: PlayerState = PlayerState.IDLE
 
 func _ready():
 	# We need to activate the animation tree because it is disabled in the editor
 	anim_tree.active = true
+	
+	game_ui.visible = true
 
 func _physics_process(delta):
 	input_component.update_input()
@@ -82,6 +94,20 @@ func enter_attack():
 	)
 
 	anim_playback.travel("attack")
+
+func take_damage(damage):
+	player_health -= damage
+	
+	var tween = create_tween()
+	tween.tween_property(
+		health_bar_ui, 
+		"value", 
+		player_health, 
+		0.3  # duration (seconds)
+	)
+	
+	if player_health <= 0:
+		died.emit()
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:

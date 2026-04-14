@@ -227,10 +227,11 @@ states/run/position = Vector2(623.5, 99.875)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3mip4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_insbl"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_rug40"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_mxi64"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_nsdob"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_yceh7")]
 graph_offset = Vector2(-214.45718, 64.142365)
 
-[node name="Player" type="CharacterBody2D" unique_id=762456616 node_paths=PackedStringArray("input_component", "movement_component")]
+[node name="Player" type="CharacterBody2D" unique_id=762456616 node_paths=PackedStringArray("input_component", "movement_component", "health_bar_ui")]
 script = ExtResource("1_674bt")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
+health_bar_ui = NodePath("")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1715619646]
 texture_filter = 1

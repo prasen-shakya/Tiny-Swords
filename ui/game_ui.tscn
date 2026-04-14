@@ -7,21 +7,21 @@
 
 [node name="GameUI" type="CanvasLayer" unique_id=1022784059]
 
-[node name="PlayerHealth" type="Control" parent="." unique_id=1931417216]
+[node name="PlayerHealth" type="Control" parent="." unique_id=44032570]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 500.0
-offset_bottom = 138.0
-metadata/_edit_group_ = true
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="PlayerImage" type="TextureRect" parent="PlayerHealth" unique_id=985474531]
+[node name="PlayerImage" type="TextureRect" parent="PlayerHealth" unique_id=1513542050]
 layout_mode = 0
 offset_right = 156.0
 offset_bottom = 156.0
 texture = ExtResource("1_dcmab")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="HealthBar" type="TextureProgressBar" parent="PlayerHealth" unique_id=1435722701]
+[node name="HealthBar" type="TextureProgressBar" parent="PlayerHealth" unique_id=1935759518]
 texture_filter = 1
 layout_mode = 0
 offset_left = 141.0
@@ -35,3 +35,4 @@ stretch_margin_right = 24
 texture_under = ExtResource("2_w46tp")
 texture_over = ExtResource("3_pylni")
 texture_progress = ExtResource("4_3vkek")
+metadata/_edit_use_anchors_ = true
