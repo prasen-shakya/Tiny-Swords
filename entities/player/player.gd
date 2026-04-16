@@ -25,10 +25,15 @@ signal died
 var player_state: PlayerState = PlayerState.IDLE
 
 var flash_tween: Tween
+var scale_tween: Tween
+
+var original_scale := Vector2.ONE
 
 func _ready():
 	anim_tree.active = true
 	game_ui.visible = true
+
+	original_scale = player_sprite.scale
 
 	if player_sprite.material:
 		player_sprite.material = player_sprite.material.duplicate()
@@ -37,6 +42,8 @@ func _physics_process(delta):
 	input_component.update_input()
 
 	if input_component.attack_pressed:
+		take_damage(1)
+
 		if player_state == PlayerState.ATTACK or not attack_cooldown.is_stopped():
 			return
 
@@ -95,6 +102,9 @@ func take_damage(damage):
 	if flash_tween:
 		flash_tween.kill()
 
+	if scale_tween:
+		scale_tween.kill()
+
 	player_sprite.material.set_shader_parameter("flash_value", 1.0)
 
 	flash_tween = create_tween()
@@ -104,6 +114,8 @@ func take_damage(damage):
 		0.0,
 		0.2
 	)
+
+	apply_hit_scale()
 
 	player_health -= damage
 
@@ -117,6 +129,25 @@ func take_damage(damage):
 
 	if player_health <= 0:
 		died.emit()
+
+func apply_hit_scale():
+	player_sprite.scale = original_scale * Vector2(1.25, 0.75)
+
+	scale_tween = create_tween()
+
+	scale_tween.tween_property(
+		player_sprite,
+		"scale",
+		original_scale * Vector2(0.9, 1.1),
+		0.08
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+	scale_tween.tween_property(
+		player_sprite,
+		"scale",
+		original_scale,
+		0.12
+	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name.begins_with("attack"):
