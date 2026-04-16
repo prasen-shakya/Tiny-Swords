@@ -1,5 +1,3 @@
-## A player orchestrator script
-
 extends CharacterBody2D
 
 enum PlayerState {
@@ -19,8 +17,6 @@ enum PlayerState {
 @export var game_ui: CanvasLayer
 @onready var health_bar_ui: TextureProgressBar = game_ui.get_node("PlayerHealth/HealthBar")
 
-
-# Player Stats
 var max_player_health := 100
 var player_health := 100
 
@@ -28,24 +24,25 @@ signal died
 
 var player_state: PlayerState = PlayerState.IDLE
 
+var flash_tween: Tween
+
 func _ready():
-	# We need to activate the animation tree because it is disabled in the editor
 	anim_tree.active = true
-	
 	game_ui.visible = true
+
+	if player_sprite.material:
+		player_sprite.material = player_sprite.material.duplicate()
 
 func _physics_process(delta):
 	input_component.update_input()
-	
+
 	if input_component.attack_pressed:
-		# If we're not allowed to attack, don't 
 		if player_state == PlayerState.ATTACK or not attack_cooldown.is_stopped():
 			return
-		
+
 		enter_attack()
 		return
 
-	# ----- STATE MACHINE -----
 	match player_state:
 		PlayerState.IDLE:
 			state_idle()
@@ -54,7 +51,6 @@ func _physics_process(delta):
 		PlayerState.ATTACK:
 			state_attack()
 
-# ---------------- STATES ----------------
 func state_idle():
 	velocity = Vector2.ZERO
 	move_and_slide()
@@ -64,24 +60,21 @@ func state_idle():
 	if input_component.move_dir.length() > 0.1:
 		player_state = PlayerState.RUN
 
-
 func state_run():
 	var dir := input_component.move_dir
 
 	movement_component.apply_movement(dir)
 
 	anim_playback.travel("run")
-	
+
 	if dir.x != 0:
 		player_sprite.flip_h = dir.x < 0
 
 	if dir.length() <= 0.1:
 		player_state = PlayerState.IDLE
 
-
 func state_attack():
 	movement_component.stop()
-
 
 func enter_attack():
 	player_state = PlayerState.ATTACK
@@ -96,19 +89,34 @@ func enter_attack():
 	anim_playback.travel("attack")
 
 func take_damage(damage):
-	player_health -= damage
-	
-	var tween = create_tween()
-	tween.tween_property(
-		health_bar_ui, 
-		"value", 
-		player_health, 
-		0.3  # duration (seconds)
+	if player_sprite.material == null:
+		return
+
+	if flash_tween:
+		flash_tween.kill()
+
+	player_sprite.material.set_shader_parameter("flash_value", 1.0)
+
+	flash_tween = create_tween()
+	flash_tween.tween_method(
+		func(v): player_sprite.material.set_shader_parameter("flash_value", v),
+		1.0,
+		0.0,
+		0.2
 	)
-	
+
+	player_health -= damage
+
+	var tween := create_tween()
+	tween.tween_property(
+		health_bar_ui,
+		"value",
+		player_health,
+		0.3
+	)
+
 	if player_health <= 0:
 		died.emit()
-
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name.begins_with("attack"):
