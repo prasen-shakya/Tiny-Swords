@@ -3,7 +3,13 @@
 [ext_resource type="Script" uid="uid://cf882nsaygiqx" path="res://entities/player/player.gd" id="1_674bt"]
 [ext_resource type="Script" uid="uid://cp1bttswj4kyr" path="res://entities/player/player_input.gd" id="2_3mip4"]
 [ext_resource type="Texture2D" uid="uid://dj4fihfoh0wng" path="res://entities/player/Warrior_Blue.png" id="2_bls4j"]
+[ext_resource type="Shader" uid="uid://ncprawsg8muf" path="res://shaders/damage_flash.gdshader" id="2_fkugw"]
 [ext_resource type="Script" uid="uid://bbbdey83bbgf8" path="res://scripts/characters/movement_component.gd" id="3_insbl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8fjmc"]
+shader = ExtResource("2_fkugw")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_674bt"]
 radius = 18.027756
@@ -227,14 +233,14 @@ states/run/position = Vector2(623.5, 99.875)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3mip4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_insbl"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_rug40"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_mxi64"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_nsdob"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_yceh7")]
 graph_offset = Vector2(-214.45718, 64.142365)
 
-[node name="Player" type="CharacterBody2D" unique_id=762456616 node_paths=PackedStringArray("input_component", "movement_component", "health_bar_ui")]
+[node name="Player" type="CharacterBody2D" unique_id=762456616 node_paths=PackedStringArray("input_component", "movement_component")]
 script = ExtResource("1_674bt")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
-health_bar_ui = NodePath("")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1715619646]
 texture_filter = 1
+material = SubResource("ShaderMaterial_8fjmc")
 position = Vector2(0, -33)
 texture = ExtResource("2_bls4j")
 hframes = 6
