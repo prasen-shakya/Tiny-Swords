@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends "res://scripts/characters/entity.gd"
 
 enum PlayerState {
 	IDLE,
@@ -11,38 +11,29 @@ enum PlayerState {
 
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var anim_playback: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
-@onready var player_sprite: Sprite2D = $PlayerSprite
 @onready var attack_cooldown: Timer = $AttackCooldown
 
 @export var game_ui: CanvasLayer
 @onready var health_bar_ui: TextureProgressBar = game_ui.get_node("PlayerHealth/HealthBar")
 
-var max_player_health := 100
-var player_health := 100
-
-signal died
-
 var player_state: PlayerState = PlayerState.IDLE
 
-var flash_tween: Tween
-var scale_tween: Tween
+func _ready() -> void:
+	super._ready()
 
-var original_scale := Vector2.ONE
-
-func _ready():
 	anim_tree.active = true
 	game_ui.visible = true
+	health_bar_ui.max_value = max_health
+	add_to_group("player")
 
-	original_scale = player_sprite.scale
-
-	if player_sprite.material:
-		player_sprite.material = player_sprite.material.duplicate()
-
-func _physics_process(delta):
+func _physics_process(_delta: float) -> void:
+	if is_dead:
+		return
+		
 	input_component.update_input()
-
+	
 	if input_component.attack_pressed:
-		take_damage(1)
+		take_damage(10)
 
 		if player_state == PlayerState.ATTACK or not attack_cooldown.is_stopped():
 			return
@@ -73,9 +64,7 @@ func state_run():
 	movement_component.apply_movement(dir)
 
 	anim_playback.travel("run")
-
-	if dir.x != 0:
-		player_sprite.flip_h = dir.x < 0
+	face_direction(dir)
 
 	if dir.length() <= 0.1:
 		player_state = PlayerState.IDLE
@@ -86,7 +75,7 @@ func state_attack():
 func enter_attack():
 	player_state = PlayerState.ATTACK
 
-	player_sprite.flip_h = input_component.attack_dir.x < 0
+	face_direction(input_component.attack_dir)
 
 	anim_tree.set(
 		"parameters/attack/BlendSpace2D/blend_position",
@@ -95,59 +84,23 @@ func enter_attack():
 
 	anim_playback.travel("attack")
 
-func take_damage(damage):
-	if player_sprite.material == null:
+func _on_health_changed() -> void:
+	if health_bar_ui == null:
 		return
-
-	if flash_tween:
-		flash_tween.kill()
-
-	if scale_tween:
-		scale_tween.kill()
-
-	player_sprite.material.set_shader_parameter("flash_value", 1.0)
-
-	flash_tween = create_tween()
-	flash_tween.tween_method(
-		func(v): player_sprite.material.set_shader_parameter("flash_value", v),
-		1.0,
-		0.0,
-		0.2
-	)
-
-	apply_hit_scale()
-
-	player_health -= damage
 
 	var tween := create_tween()
 	tween.tween_property(
 		health_bar_ui,
 		"value",
-		player_health,
+		health,
 		0.3
 	)
 
-	if player_health <= 0:
-		died.emit()
+func _on_entity_died() -> void:
+	sprite.visible = false
 
-func apply_hit_scale():
-	player_sprite.scale = original_scale * Vector2(1.25, 0.75)
-
-	scale_tween = create_tween()
-
-	scale_tween.tween_property(
-		player_sprite,
-		"scale",
-		original_scale * Vector2(0.9, 1.1),
-		0.08
-	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-
-	scale_tween.tween_property(
-		player_sprite,
-		"scale",
-		original_scale,
-		0.12
-	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+func get_death_effect_position() -> Vector2:
+	return global_position + Vector2(0, -32)
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name.begins_with("attack"):
