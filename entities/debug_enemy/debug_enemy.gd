@@ -14,6 +14,9 @@ func should_queue_free_on_death() -> bool:
 	return true
 
 func _physics_process(delta: float) -> void:
+	if is_spawning:
+		return
+		
 	var player = _get_player_node()
 	if player == null or player.is_dead:
 		should_chase = false

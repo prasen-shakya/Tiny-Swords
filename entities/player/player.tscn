@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cf882nsaygiqx" path="res://entities/player/player.gd" id="1_674bt"]
 [ext_resource type="Script" uid="uid://cp1bttswj4kyr" path="res://entities/player/player_input.gd" id="2_3mip4"]
 [ext_resource type="Texture2D" uid="uid://dj4fihfoh0wng" path="res://entities/player/Warrior_Blue.png" id="2_bls4j"]
-[ext_resource type="Shader" uid="uid://ncprawsg8muf" path="res://shaders/damage_flash.gdshader" id="2_fkugw"]
+[ext_resource type="Shader" uid="uid://ncprawsg8muf" path="res://shaders/flash.gdshader" id="2_fkugw"]
 [ext_resource type="Script" uid="uid://bbbdey83bbgf8" path="res://scripts/characters/movement_component.gd" id="3_insbl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8fjmc"]
