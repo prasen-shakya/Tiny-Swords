@@ -33,8 +33,6 @@ func _physics_process(_delta: float) -> void:
 	input_component.update_input()
 	
 	if input_component.attack_pressed:
-		take_damage(10)
-
 		if player_state == PlayerState.ATTACK or not attack_cooldown.is_stopped():
 			return
 
