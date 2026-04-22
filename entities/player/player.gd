@@ -27,7 +27,7 @@ func _ready() -> void:
 	add_to_group("player")
 
 func _physics_process(_delta: float) -> void:
-	if is_dead:
+	if is_dead or is_spawning:
 		return
 		
 	input_component.update_input()
