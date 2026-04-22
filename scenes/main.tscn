@@ -611,7 +611,7 @@ metadata/_edit_group_ = true
 [node name="Camera2D" type="Camera2D" parent="Decorations/Player" unique_id=918439919]
 zoom = Vector2(1.5, 1.5)
 
-[node name="Enemies" type="Node2D" parent="." unique_id=776267015]
+[node name="Enemies" type="Node2D" parent="Decorations" unique_id=776267015]
 
 [node name="RoundManager" type="Node" parent="." unique_id=1644250530]
 script = ExtResource("24_y6deb")

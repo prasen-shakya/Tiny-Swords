@@ -6,7 +6,7 @@ var current_round := 0
 var alive_enemies: int = 0
 var round_active := false
 
-@onready var enemies_container = $"../Enemies"
+@onready var enemies_container = $"../Decorations/Enemies"
 @onready var round_timer = $"../RoundTimer"
 @onready var spawn_areas: Array[Area2D] = [
 	$"../Background/SpawnArea1",
