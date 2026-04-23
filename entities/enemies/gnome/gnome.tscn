@@ -163,6 +163,7 @@ height = 96.0
 collision_layer = 16
 collision_mask = 17
 script = ExtResource("1_tr54o")
+move_speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715619646]
 texture_filter = 1
@@ -196,7 +197,6 @@ avoidance_enabled = true
 radius = 24.0
 neighbor_distance = 72.0
 max_speed = 128.0
-debug_enabled = true
 debug_path_custom_color = Color(0.9281416, 0.12346124, 0.05821962, 1)
 
 [node name="HurtboxArea" type="Area2D" parent="." unique_id=231907152]
