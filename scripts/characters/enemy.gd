@@ -26,6 +26,8 @@ func _ready() -> void:
 	anim_tree.active = true
 	repath_timer = randf_range(0.0, repath_interval)
 	
+	nav_agent.max_speed = move_speed
+	
 	base_attack_range_position = attack_range_shape.position
 	
 	if hitbox_area:
