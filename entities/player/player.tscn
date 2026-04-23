@@ -168,13 +168,14 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(10.542786, 97.1723)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkugw"]
-radius = 65.06919
+radius = 86.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fkugw"]
 radius = 18.0
 height = 62.0
 
 [node name="Player" type="CharacterBody2D" unique_id=762456616 node_paths=PackedStringArray("input_component", "movement_component")]
+collision_layer = 8
 script = ExtResource("1_674bt")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")

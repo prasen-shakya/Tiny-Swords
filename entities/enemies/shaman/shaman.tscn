@@ -130,6 +130,8 @@ height = 76.0
 radius = 350.0
 
 [node name="Shaman" type="CharacterBody2D" unique_id=762456616]
+collision_layer = 16
+collision_mask = 17
 script = ExtResource("1_is1lw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715619646]
@@ -161,11 +163,10 @@ one_shot = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1559345064]
 path_postprocessing = 1
 avoidance_enabled = true
-radius = 48.0
-neighbor_distance = 128.0
+radius = 24.0
+neighbor_distance = 72.0
 max_speed = 128.0
 debug_enabled = true
-debug_use_custom = true
 debug_path_custom_color = Color(0.9281416, 0.12346124, 0.05821962, 1)
 
 [node name="HurtboxArea" type="Area2D" parent="." unique_id=231907152]
@@ -190,5 +191,6 @@ rotation = -1.5707964
 shape = SubResource("CircleShape2D_sl6dt")
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="area_entered" from="AttackRangeArea" to="." method="_on_attack_range_area_area_entered"]
 [connection signal="area_exited" from="AttackRangeArea" to="." method="_on_attack_range_area_area_exited"]
