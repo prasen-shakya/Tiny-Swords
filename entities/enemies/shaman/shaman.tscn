@@ -184,8 +184,8 @@ one_shot = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1559345064]
 path_postprocessing = 1
 avoidance_enabled = true
-radius = 24.0
-neighbor_distance = 72.0
+radius = 40.0
+neighbor_distance = 80.0
 max_speed = 128.0
 debug_path_custom_color = Color(0.9281416, 0.12346124, 0.05821962, 1)
 
