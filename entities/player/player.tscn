@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cf882nsaygiqx" path="res://entities/player/player.gd" id="1_674bt"]
 [ext_resource type="Script" uid="uid://cp1bttswj4kyr" path="res://entities/player/player_input.gd" id="2_3mip4"]
-[ext_resource type="Texture2D" uid="uid://dj4fihfoh0wng" path="res://entities/player/Warrior_Blue.png" id="2_bls4j"]
 [ext_resource type="Shader" uid="uid://ncprawsg8muf" path="res://shaders/flash.gdshader" id="2_fkugw"]
+[ext_resource type="Texture2D" uid="uid://dprhn1amf65gq" path="res://entities/player/Warrior-Sheet.png" id="3_fkugw"]
 [ext_resource type="Script" uid="uid://bbbdey83bbgf8" path="res://scripts/characters/movement_component.gd" id="3_insbl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8fjmc"]
@@ -16,11 +16,6 @@ radius = 18.027756
 
 [sub_resource type="Animation" id="Animation_mxi64"]
 length = 0.001
-
-[sub_resource type="Animation" id="Animation_uovkd"]
-resource_name = "attack_down_1"
-length = 0.60001004
-step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,66 +23,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [24, 25, 26, 27, 28, 29]
-}
-
-[sub_resource type="Animation" id="Animation_jeibo"]
-resource_name = "attack_down_2"
-length = 0.60001004
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [30, 31, 32, 33, 34, 35]
-}
-
-[sub_resource type="Animation" id="Animation_rug40"]
-resource_name = "attack_horizontal_1"
-length = 0.60001004
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [12, 13, 14, 15, 16, 17]
-}
-
-[sub_resource type="Animation" id="Animation_3mip4"]
-resource_name = "attack_horizontal_2"
-length = 0.60001004
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [18, 19, 20, 21, 22, 23]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_nsdob"]
-resource_name = "attack_up_1"
-length = 0.60001004
+resource_name = "attack"
+length = 0.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -96,15 +40,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [36, 37, 38, 39, 40, 41]
+"values": [14, 15, 16, 17, 18]
 }
 
 [sub_resource type="Animation" id="Animation_yceh7"]
-resource_name = "attack_up_2"
-length = 0.60001004
+resource_name = "attack_2"
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -113,10 +57,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [42, 43, 44, 45, 46, 47]
+"values": [18, 19, 20, 21]
 }
 
 [sub_resource type="Animation" id="Animation_insbl"]
@@ -152,54 +96,20 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [6, 7, 8, 9, 10, 11]
+"values": [8, 9, 10, 11, 12, 13]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rug40"]
 _data = {
 &"RESET": SubResource("Animation_mxi64"),
-&"attack_down_1": SubResource("Animation_uovkd"),
-&"attack_down_2": SubResource("Animation_jeibo"),
-&"attack_horizontal_1": SubResource("Animation_rug40"),
-&"attack_horizontal_2": SubResource("Animation_3mip4"),
-&"attack_up_1": SubResource("Animation_nsdob"),
-&"attack_up_2": SubResource("Animation_yceh7"),
+&"attack": SubResource("Animation_nsdob"),
+&"attack_2": SubResource("Animation_yceh7"),
 &"idle": SubResource("Animation_insbl"),
 &"run": SubResource("Animation_fdrta")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3mip4"]
-animation = &"attack_up_1"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_insbl"]
-animation = &"attack_horizontal_1"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rug40"]
-animation = &"attack_horizontal_1"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mxi64"]
-animation = &"attack_down_1"
-
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_nsdob"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_3mip4")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_insbl")
-blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_rug40")
-blend_point_2/pos = Vector2(-1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_mxi64")
-blend_point_3/pos = Vector2(0, 1)
-blend_mode = 1
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_3mip4"]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yceh7"]
-graph_offset = Vector2(-563.3106, 55.46367)
-nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_nsdob")
-nodes/BlendSpace2D/position = Vector2(-130, 130)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_3mip4")
-nodes/TimeScale/position = Vector2(90, 130)
-node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"BlendSpace2D"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fkugw"]
+animation = &"attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fdrta"]
 animation = &"idle"
@@ -214,24 +124,24 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rug40"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mxi64"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8fjmc"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nsdob"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qiwj3"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yceh7"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_26q78"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mxi64"]
 states/Start/position = Vector2(200.5, 100.125)
-states/attack/node = SubResource("AnimationNodeBlendTree_yceh7")
-states/attack/position = Vector2(519.04285, 258.14236)
+states/attack/node = SubResource("AnimationNodeAnimation_fkugw")
+states/attack/position = Vector2(511.5428, 239.1723)
 states/idle/node = SubResource("AnimationNodeAnimation_fdrta")
 states/idle/position = Vector2(395, 99.9375)
 states/run/node = SubResource("AnimationNodeAnimation_674bt")
 states/run/position = Vector2(623.5, 99.875)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3mip4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_insbl"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_rug40"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_mxi64"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_nsdob"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_yceh7")]
-graph_offset = Vector2(-214.45718, 64.142365)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3mip4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_insbl"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_rug40"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_8fjmc"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_qiwj3"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_26q78")]
+graph_offset = Vector2(10.542786, 97.1723)
 
 [node name="Player" type="CharacterBody2D" unique_id=762456616 node_paths=PackedStringArray("input_component", "movement_component")]
 script = ExtResource("1_674bt")
@@ -241,10 +151,10 @@ movement_component = NodePath("MovementComponent")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715619646]
 texture_filter = 1
 material = SubResource("ShaderMaterial_8fjmc")
-position = Vector2(0, -33)
-texture = ExtResource("2_bls4j")
+position = Vector2(-1, -32)
+texture = ExtResource("3_fkugw")
 hframes = 6
-vframes = 8
+vframes = 5
 
 [node name="MovementCollider" type="CollisionShape2D" parent="." unique_id=1326847303]
 position = Vector2(0, -1)
@@ -257,8 +167,6 @@ libraries/ = SubResource("AnimationLibrary_rug40")
 active = false
 tree_root = SubResource("AnimationNodeStateMachine_mxi64")
 anim_player = NodePath("../AnimationPlayer")
-parameters/attack/BlendSpace2D/blend_position = Vector2(0.0034207106, 1.009434)
-parameters/attack/TimeScale/scale = 1.0
 
 [node name="InputComponent" type="Node" parent="." unique_id=1896382726]
 script = ExtResource("2_3mip4")
@@ -270,7 +178,7 @@ body = NodePath("..")
 metadata/_custom_type_script = "uid://bbbdey83bbgf8"
 
 [node name="AttackCooldown" type="Timer" parent="." unique_id=1596294524]
-wait_time = 0.6
+wait_time = 0.1
 one_shot = true
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

@@ -35,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 	if input_component.attack_pressed:
 		if player_state == PlayerState.ATTACK or not attack_cooldown.is_stopped():
 			return
-
+		
 		enter_attack()
 		return
 
@@ -72,14 +72,6 @@ func state_attack():
 
 func enter_attack():
 	player_state = PlayerState.ATTACK
-
-	face_direction(input_component.attack_dir)
-
-	anim_tree.set(
-		"parameters/attack/BlendSpace2D/blend_position",
-		input_component.attack_dir
-	)
-
 	anim_playback.travel("attack")
 
 func _on_health_changed() -> void:

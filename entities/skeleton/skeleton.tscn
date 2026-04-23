@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://cbv6wiu3k6f3b"]
+
+[ext_resource type="Script" uid="uid://dveh8f2i1pen3" path="res://entities/skeleton/skeleton.gd" id="1_35fyl"]
+[ext_resource type="Shader" uid="uid://ncprawsg8muf" path="res://shaders/flash.gdshader" id="2_0uyov"]
+[ext_resource type="Texture2D" uid="uid://5fbwl7hmqx3w" path="res://entities/skeleton/Skeleton.png" id="3_jb6xc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8fjmc"]
+shader = ExtResource("2_0uyov")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_674bt"]
+radius = 18.027756
+
+[sub_resource type="Animation" id="Animation_mxi64"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yceh7"]
+resource_name = "attack"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19, 20, 21]
+}
+
+[sub_resource type="Animation" id="Animation_insbl"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_fdrta"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rug40"]
+_data = {
+&"RESET": SubResource("Animation_mxi64"),
+&"attack": SubResource("Animation_yceh7"),
+&"idle": SubResource("Animation_insbl"),
+&"run": SubResource("Animation_fdrta")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bc4r6"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fdrta"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_674bt"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3mip4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_insbl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rug40"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_35fyl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0gjr1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pftnu"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mxi64"]
+states/Start/position = Vector2(198.5, 99.99805)
+states/attack/node = SubResource("AnimationNodeAnimation_bc4r6")
+states/attack/position = Vector2(507.96774, 247.4673)
+states/idle/node = SubResource("AnimationNodeAnimation_fdrta")
+states/idle/position = Vector2(395, 99.99951)
+states/run/node = SubResource("AnimationNodeAnimation_674bt")
+states/run/position = Vector2(623.5, 100.0625)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3mip4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_insbl"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_rug40"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_35fyl"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_0gjr1"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_pftnu")]
+graph_offset = Vector2(-112.5124, 24.572302)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bc4r6"]
+radius = 46.389652
+
+[node name="Skeleton" type="CharacterBody2D" unique_id=762456616]
+script = ExtResource("1_35fyl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715619646]
+texture_filter = 1
+material = SubResource("ShaderMaterial_8fjmc")
+position = Vector2(0, -28)
+texture = ExtResource("3_jb6xc")
+hframes = 6
+vframes = 5
+
+[node name="MovementCollider" type="CollisionShape2D" parent="." unique_id=1326847303]
+position = Vector2(-3, -3)
+shape = SubResource("CircleShape2D_674bt")
+debug_color = Color(0, 0.6, 0.69803923, 0.6431373)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=94841206]
+libraries/ = SubResource("AnimationLibrary_rug40")
+autoplay = &"idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=384298539]
+active = false
+tree_root = SubResource("AnimationNodeStateMachine_mxi64")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AttackCooldown" type="Timer" parent="." unique_id=1596294524]
+wait_time = 0.6
+one_shot = true
+
+[node name="HitboxArea" type="Area2D" parent="." unique_id=231907152]
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxArea" unique_id=386876326]
+position = Vector2(-3, -35)
+shape = SubResource("CircleShape2D_bc4r6")
+debug_color = Color(0.62987137, 0.6243998, 0.58953756, 0.41960785)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1559345064]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 48.0
+neighbor_distance = 128.0
+max_speed = 128.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.9281416, 0.12346124, 0.05821962, 1)
+
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
