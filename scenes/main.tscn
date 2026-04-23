@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bik0gu6phuas3" path="res://art/tiny_swords_old/Deco/01.png" id="7_2wyq8"]
 [ext_resource type="Texture2D" uid="uid://wqowd7cvjpiw" path="res://art/tiny_swords_new/Terrain/Tileset/Tilemap_color1.png" id="7_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://c2pja22bmu3s7" path="res://entities/enemies/gnome/gnome.tscn" id="7_fv21b"]
+[ext_resource type="Texture2D" uid="uid://dae88bqch28s5" path="res://NavMeshPainter.png" id="7_qkpxi"]
 [ext_resource type="PackedScene" uid="uid://c2dykye2ihvly" path="res://entities/enemies/shaman/shaman.tscn" id="7_tel4y"]
 [ext_resource type="Texture2D" uid="uid://d2je1elhjnmef" path="res://art/tiny_swords_new/Terrain/Resources/Wood/Trees/Tree3.png" id="7_vxglm"]
 [ext_resource type="Texture2D" uid="uid://byd6wi8r8vr5c" path="res://art/tiny_swords_old/Deco/02.png" id="8_vxglm"]
@@ -225,17 +226,17 @@ size = Vector2(808, 485)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxglm"]
 size = Vector2(903, 462)
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_tel4y"]
-vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
-agent_radius = 0.0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vchkt"]
+texture = ExtResource("7_qkpxi")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_tel4y")
 2:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+3:0/0 = 0
+3:1/0 = 0
+2:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_txyw0"]
 tile_size = Vector2i(32, 32)
