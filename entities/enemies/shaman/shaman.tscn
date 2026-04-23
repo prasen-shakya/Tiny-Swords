@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://o4q43lhhqytt" path="res://entities/enemies/shaman/shaman.gd" id="1_is1lw"]
 [ext_resource type="Shader" uid="uid://ncprawsg8muf" path="res://shaders/flash.gdshader" id="2_l2qxy"]
+[ext_resource type="PackedScene" uid="uid://dk3gny41p68gu" path="res://entities/enemies/shaman/projectile.tscn" id="2_sl6dt"]
 [ext_resource type="Texture2D" uid="uid://cblt1upk3et61" path="res://entities/enemies/shaman/Shaman.png" id="3_is1lw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8fjmc"]
@@ -41,6 +42,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_projectile"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_insbl"]
@@ -133,6 +148,8 @@ radius = 350.0
 collision_layer = 16
 collision_mask = 17
 script = ExtResource("1_is1lw")
+projectile_effect = ExtResource("2_sl6dt")
+attack_damage = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715619646]
 texture_filter = 1
@@ -189,6 +206,9 @@ monitorable = false
 position = Vector2(1, -29)
 rotation = -1.5707964
 shape = SubResource("CircleShape2D_sl6dt")
+
+[node name="ProjectileSpawn" type="Marker2D" parent="." unique_id=397583746]
+position = Vector2(-46, -70)
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
