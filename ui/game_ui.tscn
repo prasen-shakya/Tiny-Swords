@@ -28,6 +28,7 @@ offset_left = 141.0
 offset_top = 59.0
 offset_right = 473.0
 offset_bottom = 106.0
+step = 0.0
 value = 100.0
 nine_patch_stretch = true
 stretch_margin_left = 24

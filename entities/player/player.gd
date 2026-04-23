@@ -17,6 +17,7 @@ enum PlayerState {
 @onready var health_bar_ui: TextureProgressBar = game_ui.get_node("PlayerHealth/HealthBar")
 
 var player_state: PlayerState = PlayerState.IDLE
+var health_bar_tween: Tween
 
 func _ready() -> void:
 	super._ready()
@@ -24,6 +25,7 @@ func _ready() -> void:
 	anim_tree.active = true
 	game_ui.visible = true
 	health_bar_ui.max_value = max_health
+	health_bar_ui.value = health
 	add_to_group("player")
 
 func _physics_process(_delta: float) -> void:
@@ -78,12 +80,24 @@ func _on_health_changed() -> void:
 	if health_bar_ui == null:
 		return
 
-	var tween := create_tween()
-	tween.tween_property(
+	var target_value := float(health)
+	var delta_value := absf(health_bar_ui.value - target_value)
+
+	if is_zero_approx(delta_value):
+		health_bar_ui.value = target_value
+		return
+
+	if health_bar_tween:
+		health_bar_tween.kill()
+
+	health_bar_tween = create_tween()
+	health_bar_tween.set_trans(Tween.TRANS_SINE)
+	health_bar_tween.set_ease(Tween.EASE_OUT)
+	health_bar_tween.tween_property(
 		health_bar_ui,
 		"value",
-		health,
-		0.3
+		target_value,
+		clampf(delta_value * 0.03, 0.12, 0.5)
 	)
 
 func _on_entity_died() -> void:
@@ -96,3 +110,9 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name.begins_with("attack"):
 		player_state = PlayerState.IDLE
 		attack_cooldown.start()
+
+
+func _on_hitbox_area_area_entered(area: Area2D) -> void:
+	var entity: Entity = area.owner
+	
+	entity.take_damage(attack_damage)

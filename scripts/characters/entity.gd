@@ -15,7 +15,10 @@ const SPAWN_FLASH_KEYFRAMES := [
 signal died
 signal health_changed(current_health: int, max_health: int)
 
+# Entity Stats
 @export var max_health := 100
+@export var attack_damage: int = 2
+
 var death_effect: PackedScene = preload("res://effects/death_effect/death_effect.tscn")
 var smoke_effect: PackedScene = preload("res://effects/smoke_effect/smoke_effect.tscn")
 var flash_shader = preload("res://shaders/flash.gdshader")

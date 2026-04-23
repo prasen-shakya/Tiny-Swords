@@ -28,6 +28,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitboxArea:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_nsdob"]
 resource_name = "attack"
@@ -44,6 +56,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [14, 15, 16, 17, 18]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitboxArea:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_yceh7"]
@@ -143,10 +167,18 @@ states/run/position = Vector2(623.5, 99.875)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3mip4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_insbl"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_rug40"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_8fjmc"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_qiwj3"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_26q78")]
 graph_offset = Vector2(10.542786, 97.1723)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkugw"]
+radius = 65.06919
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fkugw"]
+radius = 18.0
+height = 62.0
+
 [node name="Player" type="CharacterBody2D" unique_id=762456616 node_paths=PackedStringArray("input_component", "movement_component")]
 script = ExtResource("1_674bt")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
+attack_damage = 50
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715619646]
 texture_filter = 1
@@ -159,6 +191,7 @@ vframes = 5
 [node name="MovementCollider" type="CollisionShape2D" parent="." unique_id=1326847303]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_674bt")
+debug_color = Color(0.43482336, 0.59832513, 0.14731446, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=94841206]
 libraries/ = SubResource("AnimationLibrary_rug40")
@@ -181,4 +214,26 @@ metadata/_custom_type_script = "uid://bbbdey83bbgf8"
 wait_time = 0.1
 one_shot = true
 
+[node name="HitboxArea" type="Area2D" parent="." unique_id=1004484651]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="HitboxShape" type="CollisionShape2D" parent="HitboxArea" unique_id=1099605486]
+position = Vector2(4, -31)
+shape = SubResource("CircleShape2D_fkugw")
+
+[node name="HurtboxArea" type="Area2D" parent="." unique_id=1296122768]
+collision_layer = 2
+collision_mask = 0
+input_pickable = false
+monitoring = false
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="HurtboxArea" unique_id=624477161]
+position = Vector2(-1, -30)
+shape = SubResource("CapsuleShape2D_fkugw")
+debug_color = Color(0.86255544, 0.3162872, 0.45341563, 0.41960785)
+
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="area_entered" from="HitboxArea" to="." method="_on_hitbox_area_area_entered"]
