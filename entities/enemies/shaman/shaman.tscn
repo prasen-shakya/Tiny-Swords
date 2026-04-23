@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://cbv6wiu3k6f3b"]
+[gd_scene format=3 uid="uid://c2dykye2ihvly"]
 
-[ext_resource type="Script" uid="uid://dveh8f2i1pen3" path="res://entities/enemies/skeleton/skeleton.gd" id="1_35fyl"]
-[ext_resource type="Shader" uid="uid://ncprawsg8muf" path="res://shaders/flash.gdshader" id="2_0uyov"]
-[ext_resource type="Texture2D" uid="uid://5fbwl7hmqx3w" path="res://entities/enemies/skeleton/Skeleton.png" id="3_jb6xc"]
+[ext_resource type="Script" uid="uid://o4q43lhhqytt" path="res://entities/enemies/shaman/shaman.gd" id="1_is1lw"]
+[ext_resource type="Shader" uid="uid://ncprawsg8muf" path="res://shaders/flash.gdshader" id="2_l2qxy"]
+[ext_resource type="Texture2D" uid="uid://cblt1upk3et61" path="res://entities/enemies/shaman/Shaman.png" id="3_is1lw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8fjmc"]
-shader = ExtResource("2_0uyov")
+shader = ExtResource("2_l2qxy")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
@@ -26,22 +26,9 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxArea:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_yceh7"]
 resource_name = "attack"
-length = 0.7
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -50,22 +37,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [15, 16, 17, 18, 19, 20, 21]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HitboxArea:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
+"values": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
 }
 
 [sub_resource type="Animation" id="Animation_insbl"]
@@ -88,7 +63,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_fdrta"]
 resource_name = "run"
-length = 0.6
+length = 0.4
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -98,10 +73,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [9, 10, 11, 12, 13, 14]
+"values": [8, 9, 10, 11]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rug40"]
@@ -151,23 +126,18 @@ graph_offset = Vector2(-52.512398, 132.5723)
 radius = 24.0
 height = 76.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2v22i"]
-radius = 48.0
-height = 96.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_sl6dt"]
+radius = 350.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n4p7n"]
-radius = 48.0
-height = 96.0
-
-[node name="Skeleton" type="CharacterBody2D" unique_id=762456616]
-script = ExtResource("1_35fyl")
+[node name="Shaman" type="CharacterBody2D" unique_id=762456616]
+script = ExtResource("1_is1lw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715619646]
 texture_filter = 1
 material = SubResource("ShaderMaterial_8fjmc")
-position = Vector2(0, -28)
-texture = ExtResource("3_jb6xc")
-hframes = 6
+position = Vector2(3, -32)
+texture = ExtResource("3_is1lw")
+hframes = 5
 vframes = 5
 
 [node name="MovementCollider" type="CollisionShape2D" parent="." unique_id=1326847303]
@@ -209,28 +179,16 @@ position = Vector2(2, -34)
 shape = SubResource("CapsuleShape2D_35fyl")
 debug_color = Color(0.62987137, 0.6243998, 0.58953756, 0.41960785)
 
-[node name="HitboxArea" type="Area2D" parent="." unique_id=596543406]
-collision_layer = 0
-collision_mask = 2
-monitoring = false
-monitorable = false
-
-[node name="HitboxShape" type="CollisionShape2D" parent="HitboxArea" unique_id=1323035328]
-position = Vector2(30, -29)
-rotation = -1.5707964
-shape = SubResource("CapsuleShape2D_2v22i")
-
-[node name="AttackRangeArea" type="Area2D" parent="." unique_id=1558293479]
+[node name="AttackRangeArea" type="Area2D" parent="." unique_id=806501838]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRangeArea" unique_id=999507594]
-position = Vector2(30, -29)
+[node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRangeArea" unique_id=1734606836]
+position = Vector2(1, -29)
 rotation = -1.5707964
-shape = SubResource("CapsuleShape2D_n4p7n")
+shape = SubResource("CircleShape2D_sl6dt")
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
-[connection signal="area_entered" from="HitboxArea" to="." method="_on_hitbox_area_area_entered"]
 [connection signal="area_entered" from="AttackRangeArea" to="." method="_on_attack_range_area_area_entered"]
 [connection signal="area_exited" from="AttackRangeArea" to="." method="_on_attack_range_area_area_exited"]

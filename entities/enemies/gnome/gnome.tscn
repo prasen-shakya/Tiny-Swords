@@ -155,6 +155,10 @@ height = 76.0
 radius = 48.0
 height = 96.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2w6qh"]
+radius = 48.0
+height = 96.0
+
 [node name="Gnome" type="CharacterBody2D" unique_id=762456616]
 script = ExtResource("1_tr54o")
 
@@ -184,6 +188,16 @@ anim_player = NodePath("../AnimationPlayer")
 wait_time = 0.6
 one_shot = true
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1559345064]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 48.0
+neighbor_distance = 128.0
+max_speed = 128.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.9281416, 0.12346124, 0.05821962, 1)
+
 [node name="HurtboxArea" type="Area2D" parent="." unique_id=231907152]
 collision_layer = 4
 collision_mask = 0
@@ -206,15 +220,17 @@ position = Vector2(30, -29)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_0gjr1")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1559345064]
-path_postprocessing = 1
-avoidance_enabled = true
-radius = 48.0
-neighbor_distance = 128.0
-max_speed = 128.0
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_color = Color(0.9281416, 0.12346124, 0.05821962, 1)
+[node name="AttackRangeArea" type="Area2D" parent="." unique_id=614824475]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="AttackRangeShape" type="CollisionShape2D" parent="AttackRangeArea" unique_id=757153358]
+position = Vector2(30, -29)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_2w6qh")
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="area_entered" from="HitboxArea" to="." method="_on_hitbox_area_area_entered"]
+[connection signal="area_entered" from="AttackRangeArea" to="." method="_on_attack_range_area_area_entered"]
+[connection signal="area_exited" from="AttackRangeArea" to="." method="_on_attack_range_area_area_exited"]
