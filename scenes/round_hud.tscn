@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://uhj3woyu6l44"]
+
+[ext_resource type="Script" uid="uid://275xrvj4qfdi" path="res://scenes/round_hud.gd" id="1_4tdfx"]
+
+[node name="RoundHUD" type="CanvasLayer" unique_id=743056523]
+script = ExtResource("1_4tdfx")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1239235581]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 50.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1542743873]
+layout_mode = 2
+
+[node name="RoundLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1661480105]
+layout_mode = 2
+
+[node name="EnemiesLeftLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1624818005]
+layout_mode = 2
