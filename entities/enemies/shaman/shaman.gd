@@ -83,7 +83,7 @@ func _get_projectile_max_travel_distance(shot_direction: Vector2) -> float:
 		var discriminant := direction_dot * direction_dot - spawn_offset.length_squared() + range_shape.radius * range_shape.radius
 
 		if discriminant >= 0.0:
-			return max(0.0, -direction_dot + sqrt(discriminant))
+			return max(0.0, -direction_dot + sqrt(discriminant)) + 10
 
 	return 0.0
 
