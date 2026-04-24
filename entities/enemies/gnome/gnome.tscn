@@ -162,6 +162,8 @@ height = 96.0
 [node name="Gnome" type="CharacterBody2D" unique_id=762456616]
 collision_layer = 16
 collision_mask = 17
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_tr54o")
 move_speed = 200.0
 

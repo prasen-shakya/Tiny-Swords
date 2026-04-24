@@ -150,6 +150,8 @@ radius = 231.19
 [node name="Shaman" type="CharacterBody2D" unique_id=762456616]
 collision_layer = 16
 collision_mask = 17
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_is1lw")
 projectile_effect = ExtResource("2_sl6dt")
 move_speed = 160.0

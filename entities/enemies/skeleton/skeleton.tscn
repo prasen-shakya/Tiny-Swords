@@ -162,6 +162,8 @@ height = 96.0
 [node name="Skeleton" type="CharacterBody2D" unique_id=762456616]
 collision_layer = 16
 collision_mask = 17
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_35fyl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715619646]
@@ -195,7 +197,6 @@ path_postprocessing = 1
 avoidance_enabled = true
 radius = 24.0
 neighbor_distance = 72.0
-debug_enabled = true
 debug_path_custom_color = Color(0.9281416, 0.12346124, 0.05821962, 1)
 
 [node name="HurtboxArea" type="Area2D" parent="." unique_id=231907152]
