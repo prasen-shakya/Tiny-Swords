@@ -3,6 +3,7 @@ extends "res://scripts/characters/enemy.gd"
 @export var projectile_effect: PackedScene
 @onready var retreat_area: Area2D = $RetreatArea
 @onready var projectile_spawn: Marker2D = $ProjectileSpawn
+@onready var projectile_container: Node = get_tree().current_scene.get_node("Projectiles")
 @onready var base_projectile_spawn := projectile_spawn.position
 
 var player_in_retreat_area := false
@@ -62,7 +63,7 @@ func spawn_projectile() -> void:
 	projectile_scene.max_travel_distance = _get_projectile_max_travel_distance(shot_direction)
 	projectile_scene.fly(shot_direction)
 	projectile_scene.damage = attack_damage
-	get_parent().add_child(projectile_scene)
+	projectile_container.add_child(projectile_scene)
 
 func face_direction(direction: Vector2) -> void:
 	if is_zero_approx(direction.x):

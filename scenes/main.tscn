@@ -738,6 +738,9 @@ zoom = Vector2(1.5, 1.5)
 [node name="Enemies" type="Node2D" parent="Decorations" unique_id=776267015]
 y_sort_enabled = true
 
+[node name="Projectiles" type="Node2D" parent="." unique_id=140554321]
+z_index = 1
+
 [node name="RoundManager" type="Node" parent="." unique_id=1644250530]
 script = ExtResource("24_y6deb")
 enemy_scenes = Array[PackedScene]([ExtResource("29_tel4y"), ExtResource("30_qkpxi"), ExtResource("29_fv21b")])
