@@ -148,7 +148,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-52.512398, 132.5723)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35fyl"]
-radius = 24.0
+radius = 35.0
 height = 76.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2v22i"]
@@ -189,7 +189,7 @@ tree_root = SubResource("AnimationNodeStateMachine_mxi64")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="AttackCooldown" type="Timer" parent="." unique_id=1596294524]
-wait_time = 0.6
+wait_time = 1.2
 one_shot = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1559345064]

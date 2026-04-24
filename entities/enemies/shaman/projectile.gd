@@ -67,6 +67,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		queue_free()
 
 func _disable_hitbox() -> void:
-	hurtbox_area.monitoring = false
-	hurtbox_area.monitorable = false
+	hurtbox_area.set_deferred("monitoring" , false)
+	hurtbox_area.set_deferred("monitorable" , false)
 	hurtbox_shape.set_deferred("disabled", true)

@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	repath_timer -= delta
 
 	var to_player := player.global_position - global_position
-	_update_facing(to_player.x if is_zero_approx(velocity.x) else velocity.x)
+	face_direction(Vector2(to_player.x if is_zero_approx(velocity.x) else velocity.x, 0))
 
 	if is_attacking:
 		velocity = Vector2.ZERO
@@ -64,13 +64,13 @@ func spawn_projectile() -> void:
 	projectile_scene.damage = attack_damage
 	get_parent().add_child(projectile_scene)
 
-func _update_facing(direction_x: float) -> void:
-	if is_zero_approx(direction_x):
+func face_direction(direction: Vector2) -> void:
+	if is_zero_approx(direction.x):
 		return
 
-	super._update_facing(direction_x)
-	
-	var facing_left := direction_x < 0
+	super.face_direction(direction)
+
+	var facing_left := direction.x < 0
 	projectile_spawn.position.x = abs(base_projectile_spawn.x) if facing_left else -abs(base_projectile_spawn.x)
 
 func _get_projectile_max_travel_distance(shot_direction: Vector2) -> float:

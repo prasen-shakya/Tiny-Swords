@@ -137,9 +137,8 @@ states/run/position = Vector2(623.5, 100.0625)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3mip4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_insbl"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_rug40"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_35fyl"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_0gjr1"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_pftnu")]
 graph_offset = Vector2(-52.512398, 132.5723)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35fyl"]
-radius = 24.0
-height = 76.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfpec"]
+radius = 49.17
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sl6dt"]
 radius = 350.0
@@ -155,7 +154,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_is1lw")
 projectile_effect = ExtResource("2_sl6dt")
 move_speed = 160.0
-attack_damage = 20
+attack_damage = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715619646]
 texture_filter = 1
@@ -186,13 +185,12 @@ one_shot = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1559345064]
 path_postprocessing = 1
 avoidance_enabled = true
-radius = 40.0
-neighbor_distance = 80.0
+radius = 24.0
+neighbor_distance = 72.0
 max_speed = 128.0
 debug_path_custom_color = Color(0.9281416, 0.12346124, 0.05821962, 1)
 
 [node name="HurtboxArea" type="Area2D" parent="." unique_id=231907152]
-visible = false
 collision_layer = 4
 collision_mask = 0
 input_pickable = false
@@ -200,10 +198,11 @@ monitoring = false
 
 [node name="HurtboxShape" type="CollisionShape2D" parent="HurtboxArea" unique_id=386876326]
 position = Vector2(2, -34)
-shape = SubResource("CapsuleShape2D_35fyl")
+shape = SubResource("CircleShape2D_rfpec")
 debug_color = Color(0.62987137, 0.6243998, 0.58953756, 0.41960785)
 
 [node name="AttackRangeArea" type="Area2D" parent="." unique_id=806501838]
+visible = false
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -214,6 +213,7 @@ rotation = -1.5707964
 shape = SubResource("CircleShape2D_sl6dt")
 
 [node name="RetreatArea" type="Area2D" parent="." unique_id=276833353]
+visible = false
 collision_layer = 0
 collision_mask = 2
 input_pickable = false

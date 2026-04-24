@@ -7,8 +7,8 @@ extends Entity
 @onready var attack_cooldown: Timer = $AttackCooldown
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 
-@onready var hitbox_area: Area2D = $HitboxArea
-@onready var hitbox_shape: CollisionShape2D = $HitboxArea/HitboxShape
+@onready var hitbox_area: Area2D = get_node_or_null("HitboxArea")
+@onready var hitbox_shape: CollisionShape2D = get_node_or_null("HitboxArea/HitboxShape")
 @onready var attack_range_area: Area2D = $AttackRangeArea
 @onready var attack_range_shape: CollisionShape2D = $AttackRangeArea/AttackRangeShape
 
@@ -17,8 +17,6 @@ extends Entity
 
 var is_attacking := false
 var player_in_attack_range := false
-var base_attack_range_position := Vector2.ZERO
-var base_hitbox_position := Vector2.ZERO
 var repath_timer := 0.0
 
 func _ready() -> void:
@@ -27,11 +25,6 @@ func _ready() -> void:
 	repath_timer = randf_range(0.0, repath_interval)
 	
 	nav_agent.max_speed = move_speed
-	
-	base_attack_range_position = attack_range_shape.position
-	
-	if hitbox_area:
-		base_hitbox_position = hitbox_shape.position
 	
 	_sync_attack_range_state()
 	add_to_group("enemy")
@@ -50,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	repath_timer -= delta
 
 	var to_player := player.global_position - global_position
-	_update_facing(to_player.x)
+	face_direction(Vector2(to_player.x, 0))
 
 	if is_attacking:
 		velocity = Vector2.ZERO
@@ -98,16 +91,11 @@ func _on_attack_range_area_area_exited(area: Area2D) -> void:
 func should_queue_free_on_death() -> bool:
 	return true
 
-func _update_facing(direction_x: float) -> void:
-	if is_zero_approx(direction_x):
-		return
-
-	var facing_left := direction_x < 0
-	sprite.flip_h = facing_left
-	attack_range_shape.position.x = -abs(base_attack_range_position.x) if facing_left else abs(base_attack_range_position.x)
-	
-	if hitbox_area:
-		hitbox_shape.position.x = -abs(base_hitbox_position.x) if facing_left else abs(base_hitbox_position.x)
+func _get_facing_position_nodes() -> Array[Node2D]:
+	var nodes: Array[Node2D] = [attack_range_shape]
+	if hitbox_shape:
+		nodes.append(hitbox_shape)
+	return nodes
 
 # This function handles the edge case where already inside AttackRangeArea when the enemy becomes ready
 func _sync_attack_range_state() -> void:

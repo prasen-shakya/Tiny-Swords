@@ -148,7 +148,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-52.512398, 132.5723)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1v6qk"]
-radius = 24.0
+radius = 30.06
 height = 76.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0gjr1"]

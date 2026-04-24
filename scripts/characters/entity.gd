@@ -28,6 +28,8 @@ var flash_shader = preload("res://shaders/flash.gdshader")
 var health: int
 var is_dead := false
 var is_spawning := true
+var facing_position_nodes: Array[Dictionary] = []
+var facing_scale_nodes: Array[Dictionary] = []
 
 
 var flash_tween: Tween
@@ -47,6 +49,7 @@ func _ready() -> void:
 		original_modulate = sprite.modulate
 
 		_setup_sprite_material()
+		_cache_facing_nodes()
 
 	_emit_health_changed()
 
@@ -64,7 +67,44 @@ func face_direction(direction: Vector2) -> void:
 	if sprite == null or is_zero_approx(direction.x):
 		return
 
-	sprite.flip_h = direction.x < 0
+	var facing_left := direction.x < 0
+	sprite.flip_h = facing_left
+	_apply_facing_nodes(facing_left)
+
+func _get_facing_position_nodes() -> Array[Node2D]:
+	return []
+
+func _get_facing_scale_nodes() -> Array[Node2D]:
+	return []
+
+func _cache_facing_nodes() -> void:
+	facing_position_nodes.clear()
+	facing_scale_nodes.clear()
+
+	for node in _get_facing_position_nodes():
+		if node:
+			facing_position_nodes.append({
+				"node": node,
+				"position": node.position,
+			})
+
+	for node in _get_facing_scale_nodes():
+		if node:
+			facing_scale_nodes.append({
+				"node": node,
+				"scale": node.scale,
+			})
+
+func _apply_facing_nodes(facing_left: bool) -> void:
+	for entry in facing_position_nodes:
+		var node: Node2D = entry["node"]
+		var base_position: Vector2 = entry["position"]
+		node.position.x = -abs(base_position.x) if facing_left else abs(base_position.x)
+
+	for entry in facing_scale_nodes:
+		var node: Node2D = entry["node"]
+		var base_scale: Vector2 = entry["scale"]
+		node.scale.x = -abs(base_scale.x) if facing_left else abs(base_scale.x)
 
 func take_damage(amount: int) -> void:
 	if is_dead:

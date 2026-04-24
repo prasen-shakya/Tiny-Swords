@@ -12,6 +12,7 @@ enum PlayerState {
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var anim_playback: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 @onready var attack_cooldown: Timer = $AttackCooldown
+@onready var hitbox_shape: CollisionPolygon2D = $HitboxArea/HitboxShape
 
 @export var game_ui: CanvasLayer
 @onready var health_bar_ui: TextureProgressBar = game_ui.get_node("PlayerHealth/HealthBar")
@@ -102,6 +103,10 @@ func _on_health_changed() -> void:
 
 func _on_entity_died() -> void:
 	sprite.visible = false
+
+func _get_facing_scale_nodes() -> Array[Node2D]:
+	var nodes: Array[Node2D] = [hitbox_shape]
+	return nodes
 
 func get_death_effect_position() -> Vector2:
 	return global_position + Vector2(0, -32)

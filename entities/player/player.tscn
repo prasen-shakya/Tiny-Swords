@@ -167,9 +167,6 @@ states/run/position = Vector2(623.5, 99.875)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3mip4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_insbl"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_rug40"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_8fjmc"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_qiwj3"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_26q78")]
 graph_offset = Vector2(10.542786, 97.1723)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fkugw"]
-radius = 86.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fkugw"]
 radius = 18.0
 height = 62.0
@@ -221,9 +218,9 @@ collision_mask = 4
 monitoring = false
 monitorable = false
 
-[node name="HitboxShape" type="CollisionShape2D" parent="HitboxArea" unique_id=1099605486]
-position = Vector2(4, -31)
-shape = SubResource("CircleShape2D_fkugw")
+[node name="HitboxShape" type="CollisionPolygon2D" parent="HitboxArea" unique_id=883037418]
+position = Vector2(0.68122864, -18.38784)
+polygon = PackedVector2Array(0.31877136, -0.6121597, -0.68122864, -65.61216, 17.318771, -60.61216, 47.31877, -42.61216, 64.31877, -31.61216, 70.31877, 4.3878403, 52.31877, 40.38784, -9.681229, 49.38784, -48.68123, 34.38784, -60.68123, 17.38784, -44.68123, 8.38784, -19.681229, 7.3878403)
 
 [node name="HurtboxArea" type="Area2D" parent="." unique_id=1296122768]
 collision_layer = 2
