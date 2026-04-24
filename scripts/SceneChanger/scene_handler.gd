@@ -38,6 +38,7 @@ func exit_game(_origin: String) -> void:
 	get_tree().quit()
 
 func _on_game_lost()-> void:
+	await get_tree().create_timer(1.5).timeout
 	if current_game_scene:
 		current_game_scene.queue_free()
 		current_game_scene = null
