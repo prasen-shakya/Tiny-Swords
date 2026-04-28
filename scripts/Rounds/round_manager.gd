@@ -2,6 +2,12 @@ extends Node
 
 @export var enemy_scenes: Array[PackedScene] = []
 
+signal game_lost
+signal round_changed(round_number: int)
+signal enemies_left_changed(count: int)
+
+@onready var player = $"../Decorations/Player"
+
 var current_round := 0
 var alive_enemies: int = 0
 var round_active := false
@@ -12,15 +18,24 @@ var round_active := false
 	$"../Background/SpawnArea1",
 	$"../Background/SpawnArea2"
 ]
+@onready var round_hud = $"../RoundHUD"
 
 func _ready() -> void:
+	player.died.connect(_on_player_died)
+	#round_changed.connect(round_hud.set_round)
+	#enemies_left_changed.connect(round_hud.set_enemies_left)
+	
+	#round_changed.emit(current_round)
+	#enemies_left_changed.emit(alive_enemies)
+	
 	randomize() #Randomizes randi() function
 	round_timer.one_shot = true
 	
 	if not round_timer.timeout.is_connected(_on_round_timer_timeout):
 		round_timer.timeout.connect(_on_round_timer_timeout)
 	
-	start_round()
+	#start_round()
+	call_deferred("_setup_round_hud")
 
 func start_round() -> void:
 	current_round += 1
@@ -35,6 +50,8 @@ func start_round() -> void:
 		spawn_enemy()
 
 	#print("Round %d started!" % current_round)
+	round_changed.emit(current_round)
+	enemies_left_changed.emit(alive_enemies)
 
 func spawn_enemy() -> void:
 	if enemy_scenes.is_empty():
@@ -81,6 +98,7 @@ func get_random_spawn_position() -> Vector2:
 func _on_enemy_died() -> void:
 	alive_enemies -= 1
 	#print("Enemy died. Remaining: %d" % alive_enemies)
+	enemies_left_changed.emit(alive_enemies)
 	
 	if alive_enemies <= 0 and round_active:
 		round_active = false
@@ -88,4 +106,15 @@ func _on_enemy_died() -> void:
 		round_timer.start(2.0)
 
 func _on_round_timer_timeout() -> void:
+	start_round()
+
+func _on_player_died() -> void:
+	game_lost.emit()
+	
+func _setup_round_hud() -> void:
+	round_changed.connect(round_hud.set_round)
+	enemies_left_changed.connect(round_hud.set_enemies_left)
+	
+	round_changed.emit(current_round)
+	enemies_left_changed.emit(alive_enemies)
 	start_round()

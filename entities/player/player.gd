@@ -1,5 +1,7 @@
 extends "res://scripts/characters/entity.gd"
 
+signal player_died
+
 enum PlayerState {
 	IDLE,
 	RUN,
@@ -28,6 +30,7 @@ func _ready() -> void:
 	health_bar_ui.max_value = max_health
 	health_bar_ui.value = health
 	add_to_group("player")
+	
 
 func _physics_process(_delta: float) -> void:
 	if is_dead or is_spawning:
@@ -102,6 +105,7 @@ func _on_health_changed() -> void:
 	)
 
 func _on_entity_died() -> void:
+	player_died.emit()
 	sprite.visible = false
 
 func _get_facing_scale_nodes() -> Array[Node2D]:
