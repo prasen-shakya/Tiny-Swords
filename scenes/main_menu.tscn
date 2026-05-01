@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://caxuefixqj1p6"]
+
+[ext_resource type="Script" uid="uid://qd5uixavcs1c" path="res://scripts/SceneChanger/main_menu.gd" id="1_8ln24"]
+[ext_resource type="Texture2D" uid="uid://b04gnxltg62uc" path="res://art/tiny_swords_new/UI Elements/UI Elements/Buttons/Button_Blue_3Slides.png" id="1_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://b13oc4kdn116t" path="res://art/tiny_swords_new/UI Elements/UI Elements/Buttons/Button_Blue_3Slides_Pressed.png" id="2_wu84c"]
+[ext_resource type="Texture2D" uid="uid://dmgovym3lpgst" path="res://art/tiny_swords_new/UI Elements/UI Elements/Buttons/Button_Hover_3Slides.png" id="3_8ln24"]
+[ext_resource type="FontFile" uid="uid://dpkh171orkrj6" path="res://art/tiny_swords_new/UI Elements/UI Elements/Banners/MedievalSharp-Regular.ttf" id="4_wu84c"]
+
+[node name="MainMenu" type="Control" unique_id=1115876169]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ln24")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=287703328]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 1080.0
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="Start_Game" type="TextureButton" parent="VBoxContainer" unique_id=1747449000]
+custom_minimum_size = Vector2(450, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("1_bqqt6")
+texture_pressed = ExtResource("2_wu84c")
+texture_hover = ExtResource("3_8ln24")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/Start_Game" unique_id=743686449]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.69411767)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = ExtResource("4_wu84c")
+theme_override_font_sizes/font_size = 60
+text = "Start Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit_Game" type="TextureButton" parent="VBoxContainer" unique_id=94793728]
+custom_minimum_size = Vector2(450, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("1_bqqt6")
+texture_pressed = ExtResource("2_wu84c")
+texture_hover = ExtResource("3_8ln24")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/Quit_Game" unique_id=1403737883]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.69411767)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 16
+theme_override_fonts/font = ExtResource("4_wu84c")
+theme_override_font_sizes/font_size = 60
+text = "Exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Start_Game" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit_Game" to="." method="_on_quit_game_pressed"]
