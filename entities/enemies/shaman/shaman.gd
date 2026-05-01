@@ -3,12 +3,13 @@ extends "res://scripts/characters/enemy.gd"
 @export var projectile_effect: PackedScene
 @onready var retreat_area: Area2D = $RetreatArea
 @onready var projectile_spawn: Marker2D = $ProjectileSpawn
-@onready var projectile_container: Node = get_tree().current_scene.get_node("Projectiles")
+@onready var projectile_container: Node = get_tree().current_scene.get_node("Main/Projectiles")
 @onready var base_projectile_spawn := projectile_spawn.position
 
 var player_in_retreat_area := false
 
 func _ready() -> void:
+	print(get_tree().current_scene.get_children())
 	super._ready()
 	_sync_retreat_area_state()
 
