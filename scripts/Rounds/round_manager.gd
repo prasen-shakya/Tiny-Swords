@@ -16,7 +16,11 @@ var round_active := false
 @onready var round_timer = $"../RoundTimer"
 @onready var spawn_areas: Array[Area2D] = [
 	$"../Background/SpawnArea1",
-	$"../Background/SpawnArea2"
+	$"../Background/SpawnArea2",
+	$"../Background/SpawnArea3",
+	$"../Background/SpawnArea4",
+	$"../Background/SpawnArea5",
+	$"../Background/SpawnArea6"
 ]
 @onready var round_hud = $"../RoundHUD"
 
@@ -41,7 +45,7 @@ func start_round() -> void:
 	current_round += 1
 	round_active = true
 	
-	var enemy_count: int = 2 + current_round
+	var enemy_count: int = 4 * current_round + 1
 	alive_enemies = enemy_count
 	
 	#print("Starting round %d with %d enemies" % [current_round, enemy_count])

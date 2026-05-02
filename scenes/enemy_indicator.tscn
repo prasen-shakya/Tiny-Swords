@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bd87khr2hrjnr"]
+
+[ext_resource type="Script" uid="uid://cl3fke6quq3s5" path="res://scripts/Rounds/enemy_indicator.gd" id="1_e6m3d"]
+[ext_resource type="Texture2D" uid="uid://dt3oa6k2kek1n" path="res://art/tiny_swords_new/UI Elements/UI Elements/Icons/Icon_08.png" id="2_1tjfh"]
+
+[node name="EnemyIndicator" type="CanvasLayer" unique_id=76786158]
+script = ExtResource("1_e6m3d")
+
+[node name="Arrow" type="TextureRect" parent="." unique_id=1540853043]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_1tjfh")
