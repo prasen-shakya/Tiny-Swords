@@ -21,6 +21,7 @@ signal health_changed(current_health: int, max_health: int)
 
 var death_effect: PackedScene = preload("res://effects/death_effect/death_effect.tscn")
 var smoke_effect: PackedScene = preload("res://effects/smoke_effect/smoke_effect.tscn")
+var heal_effect: PackedScene = preload("res://effects/heal_effect/heal_effect.tscn")
 var flash_shader = preload("res://shaders/flash.gdshader")
 
 @onready var sprite: Sprite2D = $Sprite2D
@@ -117,6 +118,12 @@ func take_damage(amount: int) -> void:
 	if health == 0:
 		die()
 
+func heal(amount: int) -> void:
+	health = min(health + amount, max_health)
+	
+	_emit_health_changed()
+	_spawn_heal_effect()
+
 func die() -> void:
 	if is_dead:
 		return
@@ -140,6 +147,17 @@ func _on_health_changed() -> void:
 
 func _on_entity_died() -> void:
 	pass
+
+func _spawn_heal_effect() -> void:
+	if heal_effect == null or get_parent() == null:
+		return
+
+	var heal_effect_scene := heal_effect.instantiate() as Node2D
+	if heal_effect_scene == null:
+		return
+
+	heal_effect_scene.position = Vector2(0, 0)
+	add_child(heal_effect_scene)
 
 func _spawn_death_effect() -> void:
 	if death_effect == null or get_parent() == null:

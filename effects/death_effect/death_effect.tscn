@@ -58,7 +58,7 @@ autoplay = &"death"
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=310381546]
 stream = ExtResource("3_33glo")
-volume_db = -4.561
+volume_db = -2.0
 autoplay = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
