@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://3cxty5hu65pg"]
 
-[ext_resource type="Script" uid="uid://csrrmr21rj1t7" path="res://effects/death_effect/death_effect.gd" id="1_xgrdx"]
+[ext_resource type="Script" uid="uid://dud0cvg76ub5a" path="res://effects/heal_effect/heal_effect.gd" id="1_6b42y"]
 [ext_resource type="Texture2D" uid="uid://dt8we6ex1m5yy" path="res://art/tiny_swords_new/Units/Blue Units/Monk/Heal_Effect.png" id="2_vecpf"]
 [ext_resource type="AudioStream" uid="uid://bynd6y5nih4dc" path="res://art/sfx/healSound.wav" id="3_6b42y"]
 
@@ -43,7 +43,7 @@ _data = {
 }
 
 [node name="HealEffect" type="Node2D" unique_id=1814272635]
-script = ExtResource("1_xgrdx")
+script = ExtResource("1_6b42y")
 
 [node name="HealSprite" type="Sprite2D" parent="." unique_id=1557530166]
 texture_filter = 1

@@ -154,6 +154,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_is1lw")
 projectile_effect = ExtResource("2_sl6dt")
 move_speed = 160.0
+max_health = 50
 attack_damage = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715619646]
