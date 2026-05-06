@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bgtnrl4ju0242"]
 
+[ext_resource type="Script" path="res://effects/death_effect/death_effect.gd" id="1_33glo"]
 [ext_resource type="Texture2D" uid="uid://bgoqe2iqyih2s" path="res://art/Knights/Troops/Dead/Dead.png" id="1_t8att"]
-[ext_resource type="Script" uid="uid://csrrmr21rj1t7" path="res://effects/death_effect/death_effect.gd" id="1_wnp8e"]
 [ext_resource type="AudioStream" uid="uid://deui1w8xlmxk" path="res://art/sfx/deathSound1.wav" id="3_33glo"]
 
 [sub_resource type="Animation" id="Animation_rjmvn"]
@@ -43,7 +43,7 @@ _data = {
 }
 
 [node name="DeathEffect" type="Node2D" unique_id=1814272635]
-script = ExtResource("1_wnp8e")
+script = ExtResource("1_33glo")
 
 [node name="DeathSprite" type="Sprite2D" parent="." unique_id=1557530166]
 texture_filter = 1
