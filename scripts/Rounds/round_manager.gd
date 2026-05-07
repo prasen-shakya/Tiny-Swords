@@ -42,6 +42,7 @@ func _ready() -> void:
 	call_deferred("_setup_round_hud")
 
 func start_round() -> void:
+	player.heal(100)
 	current_round += 1
 	round_active = true
 	

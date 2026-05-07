@@ -31,6 +31,8 @@ func _ready() -> void:
 	health_bar_ui.value = health
 	add_to_group("player")
 	
+	heal(1)
+	
 
 func _physics_process(_delta: float) -> void:
 	if is_dead or is_spawning:
