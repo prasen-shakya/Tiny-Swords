@@ -29,11 +29,19 @@ func _ready() -> void:
 	game_ui.visible = true
 	health_bar_ui.max_value = max_health
 	health_bar_ui.value = health
+	$FootstepsTimer.wait_time = 0.27
+	$AttackTimer.wait_time = 0.5
 	add_to_group("player")
 	
 	heal(1)
 	
 
+func play_footstep():
+	$FootstepsPlayer.play()
+
+func play_attack():
+	$AttackPlayer.play()
+	
 func _physics_process(_delta: float) -> void:
 	if is_dead or is_spawning:
 		return
@@ -71,16 +79,25 @@ func state_run():
 
 	anim_playback.travel("run")
 	face_direction(dir)
-
+	
+	if dir.length() > 0.1 and $FootstepsTimer.is_stopped():
+		play_footstep()
+		$FootstepsTimer.start()
+	
 	if dir.length() <= 0.1:
 		player_state = PlayerState.IDLE
 
 func state_attack():
 	movement_component.stop()
+	
 
 func enter_attack():
 	player_state = PlayerState.ATTACK
 	anim_playback.travel("attack")
+	
+	if $AttackTimer.is_stopped():
+		play_attack()
+		$AttackTimer.start()
 
 func _on_health_changed() -> void:
 	if health_bar_ui == null:
