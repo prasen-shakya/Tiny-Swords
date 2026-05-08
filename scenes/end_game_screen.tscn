@@ -788,6 +788,7 @@ vertical_alignment = 1
 [node name="GameOverMusic" type="AudioStreamPlayer" parent="." unique_id=402210135]
 stream = ExtResource("33_qb1ti")
 autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/Replay" to="." method="_on_replay_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

@@ -791,6 +791,7 @@ vertical_alignment = 1
 [node name="MenuMusic" type="AudioStreamPlayer" parent="." unique_id=252171633]
 stream = SubResource("AudioStreamMP3_dj67d")
 autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/Start_Game" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/Quit_Game" to="." method="_on_quit_game_pressed"]
