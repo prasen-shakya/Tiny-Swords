@@ -165,6 +165,7 @@ collision_mask = 17
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_35fyl")
+move_speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715619646]
 texture_filter = 1
@@ -189,7 +190,6 @@ tree_root = SubResource("AnimationNodeStateMachine_mxi64")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="AttackCooldown" type="Timer" parent="." unique_id=1596294524]
-wait_time = 1.2
 one_shot = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1559345064]
