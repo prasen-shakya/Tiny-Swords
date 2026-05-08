@@ -5,6 +5,8 @@
 [ext_resource type="Shader" uid="uid://ncprawsg8muf" path="res://shaders/flash.gdshader" id="2_fkugw"]
 [ext_resource type="Texture2D" uid="uid://dprhn1amf65gq" path="res://entities/player/Warrior-Sheet.png" id="3_fkugw"]
 [ext_resource type="Script" uid="uid://bbbdey83bbgf8" path="res://scripts/characters/movement_component.gd" id="3_insbl"]
+[ext_resource type="AudioStream" uid="uid://chv2ixrxnyi35" path="res://art/sfx/Dirt Run.wav" id="6_8fjmc"]
+[ext_resource type="AudioStream" uid="uid://duw5l0o1adyts" path="res://art/sfx/Sword AttackA.wav" id="7_26q78"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8fjmc"]
 shader = ExtResource("2_fkugw")
@@ -213,6 +215,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="HitboxArea" type="Area2D" parent="." unique_id=1004484651]
+visible = false
 collision_layer = 0
 collision_mask = 4
 monitoring = false
@@ -223,6 +226,7 @@ position = Vector2(0.68122864, -18.38784)
 polygon = PackedVector2Array(0.31877136, -0.6121597, -0.68122864, -65.61216, 44.31877, -65.61216, 80.31877, -42.61216, 84.31877, -29.61216, 85.31877, 16.38784, 55.31877, 58.38784, -15.681229, 69.38784, -68.68123, 44.38784, -68.68123, 8.38784, -46.68123, 1.3878403, -19.681229, 7.3878403)
 
 [node name="HurtboxArea" type="Area2D" parent="." unique_id=1296122768]
+visible = false
 collision_layer = 2
 collision_mask = 0
 input_pickable = false
@@ -232,6 +236,23 @@ monitoring = false
 position = Vector2(-1, -30)
 shape = SubResource("CapsuleShape2D_fkugw")
 debug_color = Color(0.86255544, 0.3162872, 0.45341563, 0.41960785)
+
+[node name="FootstepsPlayer" type="AudioStreamPlayer" parent="." unique_id=360114832]
+stream = ExtResource("6_8fjmc")
+volume_db = -8.211
+pitch_scale = 1.59
+
+[node name="FootstepsTimer" type="Timer" parent="." unique_id=1516197726]
+wait_time = 0.25
+one_shot = true
+
+[node name="AttackPlayer" type="AudioStreamPlayer" parent="." unique_id=337457087]
+stream = ExtResource("7_26q78")
+pitch_scale = 0.7
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=1953861781]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="area_entered" from="HitboxArea" to="." method="_on_hitbox_area_area_entered"]
