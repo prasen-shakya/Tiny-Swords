@@ -12,6 +12,10 @@ extends Entity
 @onready var attack_range_area: Area2D = $AttackRangeArea
 @onready var attack_range_shape: CollisionShape2D = $AttackRangeArea/AttackRangeShape
 
+@onready var move_sound_audio: AudioStreamPlayer2D = get_node_or_null("MoveSound")
+@onready var move_timer: Timer = get_node_or_null("MoveTimer")
+
+
 @export var move_speed := 120.0
 @export var repath_interval := 0.25
 
@@ -26,6 +30,11 @@ func _ready() -> void:
 	
 	nav_agent.max_speed = move_speed
 	
+	if move_timer:
+		move_timer.wait_time = randf_range(5.0, 12.0)
+		move_timer.timeout.connect(_on_move_timer_timeout)
+	
+	
 	_sync_attack_range_state()
 	add_to_group("enemy")
 
@@ -39,6 +48,9 @@ func _physics_process(delta: float) -> void:
 		
 	if is_dead or is_spawning:
 		return
+	
+	if move_sound_audio and move_timer.is_stopped():
+		move_timer.start()
 
 	repath_timer -= delta
 
@@ -59,6 +71,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		_chase_player()
 		anim_playback.travel("run")
+		
+
+func _on_move_timer_timeout():
+	move_sound_audio.play()
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	if is_dead or is_spawning or is_attacking or player_in_attack_range:

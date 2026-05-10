@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://db7wqbbhos4tr" path="res://entities/enemies/shaman/Projectile.png" id="1_hojlk"]
 [ext_resource type="Script" uid="uid://bqbrgjo0b65jj" path="res://entities/enemies/shaman/projectile.gd" id="1_jvrks"]
+[ext_resource type="AudioStream" uid="uid://wru37gfqwcut" path="res://art/sfx/MagicSoundB.wav" id="3_wxjsn"]
+[ext_resource type="AudioStream" uid="uid://diu2u7dpa2nc7" path="res://art/sfx/MagicSoundC.wav" id="4_31kie"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvrks"]
 atlas = ExtResource("1_hojlk")
@@ -112,7 +114,8 @@ position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_lgf0p")
 animation = &"seeking"
 autoplay = "seeking"
-frame_progress = 0.47040012
+frame = 2
+frame_progress = 0.94635755
 
 [node name="HurtboxArea" type="Area2D" parent="." unique_id=1927680914]
 collision_layer = 0
@@ -121,6 +124,22 @@ collision_mask = 2
 [node name="HurtboxShape" type="CollisionShape2D" parent="HurtboxArea" unique_id=1064851065]
 shape = SubResource("CircleShape2D_jvrks")
 
+[node name="MagicSound" type="AudioStreamPlayer2D" parent="." unique_id=1025414701]
+stream = ExtResource("3_wxjsn")
+volume_db = 14.094
+pitch_scale = 1.2
+max_distance = 422.0
+attenuation = 0.6597539
+
+[node name="MagicTimer" type="Timer" parent="." unique_id=1590573327]
+
+[node name="MagicExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=402338899]
+stream = ExtResource("4_31kie")
+pitch_scale = 0.52
+max_distance = 457.0
+attenuation = 0.70710677
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="HurtboxArea" to="." method="_on_hurtbox_area_area_entered"]
 [connection signal="body_entered" from="HurtboxArea" to="." method="_on_hurtbox_area_body_entered"]
+[connection signal="timeout" from="MagicTimer" to="." method="_on_magic_timer_timeout"]
