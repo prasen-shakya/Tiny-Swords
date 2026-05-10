@@ -802,5 +802,5 @@ visible = false
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1495356442]
 stream = SubResource("AudioStreamMP3_dgi5k")
-volume_db = -0.972
+volume_db = -13.122
 autoplay = true

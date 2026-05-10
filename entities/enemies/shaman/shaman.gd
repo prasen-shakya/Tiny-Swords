@@ -11,6 +11,11 @@ var player_in_retreat_area := false
 func _ready() -> void:
 	print(get_tree().current_scene.get_children())
 	super._ready()
+	
+	if move_timer:
+		move_timer.wait_time = 3
+		move_timer.timeout.connect(_on_move_timer_timeout)
+
 	_sync_retreat_area_state()
 
 func _physics_process(delta: float) -> void:
@@ -25,6 +30,9 @@ func _physics_process(delta: float) -> void:
 		return
 
 	repath_timer -= delta
+	
+	if move_sound_audio and move_timer.is_stopped():
+		move_timer.start()
 
 	var to_player := player.global_position - global_position
 	face_direction(Vector2(to_player.x if is_zero_approx(velocity.x) else velocity.x, 0))

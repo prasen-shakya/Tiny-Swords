@@ -16,6 +16,7 @@ var is_fading_out := false
 
 func _ready() -> void:
 	spawn_position = global_position
+	$MagicTimer.wait_time = 3
 
 func fly(direction: Vector2) -> void:
 	if direction.is_zero_approx():
@@ -27,7 +28,10 @@ func fly(direction: Vector2) -> void:
 func _physics_process(delta: float) -> void:
 	if is_exploding or is_fading_out:
 		return
-
+		
+		if $MagicTimer.is_stopped():
+			$MagicTimer.start()
+		
 	global_position += fly_direction * speed * delta
 
 	if global_position.distance_squared_to(spawn_position) >= max_travel_distance * max_travel_distance:
@@ -39,6 +43,7 @@ func explode() -> void:
 
 	is_exploding = true
 	_disable_hitbox()
+	$MagicExplosionSound.play()
 	animated_sprite.play("explosion")
 
 func fade_away() -> void:
@@ -70,3 +75,7 @@ func _disable_hitbox() -> void:
 	hurtbox_area.set_deferred("monitoring" , false)
 	hurtbox_area.set_deferred("monitorable" , false)
 	hurtbox_shape.set_deferred("disabled", true)
+
+
+func _on_magic_timer_timeout() -> void:
+	$MagicSound.play()

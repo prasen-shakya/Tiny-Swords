@@ -4,6 +4,10 @@
 [ext_resource type="Shader" uid="uid://ncprawsg8muf" path="res://shaders/flash.gdshader" id="2_l2qxy"]
 [ext_resource type="PackedScene" uid="uid://dk3gny41p68gu" path="res://entities/enemies/shaman/projectile.tscn" id="2_sl6dt"]
 [ext_resource type="Texture2D" uid="uid://cblt1upk3et61" path="res://entities/enemies/shaman/Shaman.png" id="3_is1lw"]
+[ext_resource type="AudioStream" uid="uid://byt6u8ui6imbi" path="res://art/sfx/ShamanSoundA.wav" id="5_bfe1p"]
+[ext_resource type="AudioStream" uid="uid://dj7ci4xj14wcg" path="res://art/sfx/ShamanSoundB.wav" id="6_rg5dd"]
+[ext_resource type="AudioStream" uid="uid://br2fbq2coa5cp" path="res://art/sfx/ShamanSoundC.wav" id="7_skt8t"]
+[ext_resource type="AudioStream" uid="uid://bn4pfc2y2dki1" path="res://art/sfx/MagicSoundA.mp3" id="8_rg5dd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8fjmc"]
 shader = ExtResource("2_l2qxy")
@@ -146,6 +150,12 @@ radius = 350.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_rli3d"]
 radius = 231.19
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_naqch"]
+streams_count = 3
+stream_0/stream = ExtResource("5_bfe1p")
+stream_1/stream = ExtResource("6_rg5dd")
+stream_2/stream = ExtResource("7_skt8t")
+
 [node name="Shaman" type="CharacterBody2D" unique_id=762456616]
 collision_layer = 16
 collision_mask = 17
@@ -227,6 +237,17 @@ debug_color = Color(0.866658, 0.10337611, 0.49135846, 0.41960785)
 
 [node name="ProjectileSpawn" type="Marker2D" parent="." unique_id=397583746]
 position = Vector2(-46, -70)
+
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="." unique_id=1005825517]
+stream = SubResource("AudioStreamRandomizer_naqch")
+max_distance = 375.0
+attenuation = 0.5358866
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=1780755556]
+one_shot = true
+
+[node name="AttackAudio" type="AudioStreamPlayer2D" parent="." unique_id=703357428]
+stream = ExtResource("8_rg5dd")
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
