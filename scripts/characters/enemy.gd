@@ -32,7 +32,7 @@ func _ready() -> void:
 	nav_agent.max_speed = move_speed
 	
 	if move_timer:
-		move_timer.wait_time = randf_range(8.0, 12.0)
+		move_timer.wait_time = randf_range(5.0, 12.0)
 		move_timer.timeout.connect(_on_move_timer_timeout)
 	
 	
