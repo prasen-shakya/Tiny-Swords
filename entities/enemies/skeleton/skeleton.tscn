@@ -42,6 +42,11 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ja7qe"]
+streams_count = 2
+stream_0/stream = ExtResource("5_ocggl")
+stream_1/stream = ExtResource("6_udmr7")
+
 [sub_resource type="Animation" id="Animation_yceh7"]
 resource_name = "attack"
 length = 0.7
@@ -70,6 +75,21 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true, false]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackAudio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_ja7qe")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_insbl"]
 resource_name = "idle"
@@ -173,11 +193,6 @@ streams_count = 2
 stream_0/stream = ExtResource("4_0usyd")
 stream_1/stream = SubResource("AudioStreamWAV_n4p7n")
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ja7qe"]
-streams_count = 2
-stream_0/stream = ExtResource("5_ocggl")
-stream_1/stream = ExtResource("6_udmr7")
-
 [node name="Skeleton" type="CharacterBody2D" unique_id=762456616]
 collision_layer = 16
 collision_mask = 17
@@ -261,7 +276,6 @@ wait_time = 8.0
 one_shot = true
 
 [node name="AttackAudio" type="AudioStreamPlayer2D" parent="." unique_id=269480113]
-stream = SubResource("AudioStreamRandomizer_ja7qe")
 volume_db = -2.916
 max_distance = 418.0
 

@@ -14,7 +14,6 @@ extends Entity
 
 @onready var move_sound_audio: AudioStreamPlayer2D = get_node_or_null("MoveSound")
 @onready var move_timer: Timer = get_node_or_null("MoveTimer")
-@onready var attack_audio: AudioStreamPlayer2D = get_node_or_null("AttackAudio")
 
 
 @export var move_speed := 120.0
@@ -90,8 +89,6 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 		attack_cooldown.start()
 
 func attack() -> void:
-	if attack_audio:
-		attack_audio.play()
 	anim_playback.travel("attack")
 
 func _on_hitbox_area_area_entered(area: Area2D) -> void:

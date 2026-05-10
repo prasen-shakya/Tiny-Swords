@@ -135,7 +135,6 @@ attenuation = 0.6597539
 
 [node name="MagicExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=402338899]
 stream = ExtResource("4_31kie")
-volume_db = 9.72
 pitch_scale = 0.52
 max_distance = 457.0
 attenuation = 0.70710677

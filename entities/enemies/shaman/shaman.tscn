@@ -61,6 +61,21 @@ tracks/1/keys = {
 "method": &"spawn_projectile"
 }]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackAudio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_rg5dd")
+}],
+"times": PackedFloat32Array(0.5)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_insbl"]
 resource_name = "idle"
@@ -247,7 +262,7 @@ attenuation = 0.5358866
 one_shot = true
 
 [node name="AttackAudio" type="AudioStreamPlayer2D" parent="." unique_id=703357428]
-stream = ExtResource("8_rg5dd")
+volume_db = 1.0
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
