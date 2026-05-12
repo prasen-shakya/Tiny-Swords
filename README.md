@@ -1,4 +1,5 @@
 # Tiny Swords
+<img width="1512" height="853" alt="image" src="https://github.com/user-attachments/assets/cf3542a0-6740-47e6-843e-09a355b66579" />
 
 Tiny Swords is a 2D top-down arena survival game built with Godot 4.6. You control a sword fighter, survive increasingly large enemy waves, and loop through a simple menu -> gameplay -> game over flow with scene transitions.
 
